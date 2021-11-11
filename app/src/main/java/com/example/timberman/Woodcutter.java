@@ -2,14 +2,18 @@ package com.example.timberman;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 //drwal
 public class Woodcutter extends BaseObject {
     private ArrayList<Bitmap> arrBms = new ArrayList<>();
     private int count, vHit, idCurrentBitmap;
+    final Handler handler = new Handler(Looper.getMainLooper());
     public Woodcutter(){
     this.count = 0;
     this.vHit = 5;
@@ -34,11 +38,19 @@ public class Woodcutter extends BaseObject {
     public void onClick(int strona){
         if(strona==1){
             this.x = 170*Constants.SCREEN_WIDTH/1080;
+            idCurrentBitmap = 2;
             idCurrentBitmap = 0;
         }
+        //Grruby masz tu animacje, popraw wygląd :)
         else if(strona==2){
             this.x = 700*Constants.SCREEN_WIDTH/1080;
             idCurrentBitmap = 1;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    idCurrentBitmap = 3;
+                }
+            },300);
         }
     }
 
