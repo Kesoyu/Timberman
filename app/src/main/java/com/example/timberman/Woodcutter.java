@@ -2,6 +2,7 @@ package com.example.timberman;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.SystemClock;
 
 import java.util.ArrayList;
 
