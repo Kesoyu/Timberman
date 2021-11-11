@@ -65,6 +65,8 @@ public class GameView extends View {
         ArrayList<Bitmap> arrBms = new ArrayList<>();
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.cutleft));
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.cutright));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right));
         woodcutter.setArrBms(arrBms);
     }
 
