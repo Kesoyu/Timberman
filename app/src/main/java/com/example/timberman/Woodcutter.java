@@ -30,22 +30,14 @@ public class Woodcutter extends BaseObject {
         }
     }
 
-    public void onClick(){
-        count++;
-        if(this.count == 1){
-            for(int i = 0; i < arrBms.size(); i++){
-                if(i == arrBms.size()-1){
-                    this.x -= 500;
-                    this.idCurrentBitmap=0;
-                    break;
-                }
-                else if(this.idCurrentBitmap == i){
-                    this.x += 500;
-                    idCurrentBitmap = i+1;
-                    break;
-                }
-            }
-            count=0;
+    public void onClick(int strona){
+        if(strona==1){
+            this.x = 170*Constants.SCREEN_WIDTH/1080;
+            idCurrentBitmap = 0;
+        }
+        else if(strona==2){
+            this.x = 700*Constants.SCREEN_WIDTH/1080;
+            idCurrentBitmap = 1;
         }
     }
 

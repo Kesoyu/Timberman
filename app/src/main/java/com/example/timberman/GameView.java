@@ -10,10 +10,12 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.LogRecord;
 
 public class GameView extends View {
@@ -21,20 +23,11 @@ public class GameView extends View {
     private android.os.Handler handler;
     private Runnable r;
     private float xValue, yValue,leftPersentage;
+    private ArrayList<Stick>arrSicks;
+    private int distance, sumbranch, los;
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        woodcutter = new Woodcutter();
-        //ustawianie wielkości drwala
-        woodcutter.setWidth(300*Constants.SCREEN_WIDTH/1080);
-        woodcutter.setHeight(300*Constants.SCREEN_HEIGHT/1920);
-        //połeżenie drwala
-        woodcutter.setX(200*Constants.SCREEN_WIDTH/1080);
-        woodcutter.setY(1300*Constants.SCREEN_HEIGHT/1920);
-        ArrayList<Bitmap> arrBms = new ArrayList<>();
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.woodcutter));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.woodcutter2));
-        woodcutter.setArrBms(arrBms);
-
+        initWoodCutter();
         leftPersentage = (Constants.SCREEN_WIDTH)*50/100;
         handler = new Handler();
         r = new Runnable() {
@@ -43,9 +36,39 @@ public class GameView extends View {
                 invalidate();
             }
         };
-
     }
-    public  void draw(Canvas canvas){
+
+    public void initSticks(){
+        sumbranch=4;
+        distance=200*Constants.SCREEN_HEIGHT/1920;
+        arrSicks = new ArrayList<>();
+        for(int i=0;i<sumbranch;i++){
+            Random liczba = new Random();
+            los = liczba.nextInt(1);
+            if(los==0){
+                //TODO wyswietlanie po lewej
+            }
+            else if (los==1){
+                //TODO wyswietlanie galazki po prawej
+            }
+        }
+    }
+
+    public void initWoodCutter(){
+        woodcutter = new Woodcutter();
+        //ustawianie wielkości drwala
+        woodcutter.setWidth(300*Constants.SCREEN_WIDTH/1080);
+        woodcutter.setHeight(300*Constants.SCREEN_HEIGHT/1920);
+        //połeżenie drwala
+        woodcutter.setX(170*Constants.SCREEN_WIDTH/1080);
+        woodcutter.setY(1300*Constants.SCREEN_HEIGHT/1920);
+        ArrayList<Bitmap> arrBms = new ArrayList<>();
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.cutleft));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.cutright));
+        woodcutter.setArrBms(arrBms);
+    }
+
+    public void draw(Canvas canvas){
         super.draw(canvas);
         woodcutter.draw(canvas);
         handler.postDelayed(r, 10);
@@ -57,7 +80,10 @@ public class GameView extends View {
             xValue = event.getX();
             yValue = event.getY();
             if(xValue <= leftPersentage){
-                woodcutter.onClick();
+                woodcutter.onClick(1);
+            }
+            else{
+                woodcutter.onClick(2);
             }
         }
         return true;
