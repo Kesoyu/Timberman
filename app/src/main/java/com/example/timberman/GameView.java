@@ -25,8 +25,10 @@ public class GameView extends View {
     private float xValue, yValue,leftPersentage;
     private ArrayList<Stick>arrSicks;
     private int distance, sumbranch, los;
+    private boolean start;
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        start=false;
         initWoodCutter();
         leftPersentage = (Constants.SCREEN_WIDTH)*50/100;
         handler = new Handler();
