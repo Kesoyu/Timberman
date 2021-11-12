@@ -20,6 +20,7 @@ import java.util.logging.LogRecord;
 
 public class GameView extends View {
     private Woodcutter woodcutter;
+    private Stick stick;
     private android.os.Handler handler;
     private Runnable r;
     private float xValue, yValue,leftPersentage;
@@ -40,18 +41,28 @@ public class GameView extends View {
         };
     }
 
-    public void initSticks(){
-        sumbranch=4;
-        distance=200*Constants.SCREEN_HEIGHT/1920;
+    public void initSticks() {
+        sumbranch = 7;
+        distance = 200 * Constants.SCREEN_HEIGHT / 1920;
         arrSicks = new ArrayList<>();
-        for(int i=0;i<sumbranch;i++){
+
+        this.arrSicks.add(new Stick(-47, 0, 1050, 300));
+        arrSicks.get(0).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
+        for (int i = 0; i < sumbranch; i++) {
+
             Random liczba = new Random();
-            los = liczba.nextInt(1);
-            if(los==0){
-                //TODO wyswietlanie po lewej
+            los = liczba.nextInt(3);
+
+            if (los == 0) {
+                this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() + 300, 1050, 300));
+                arrSicks.get(i+1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
+            } else if (los == 1) {
+                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() + 300,1050,300));
+                arrSicks.get(i+1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
             }
-            else if (los==1){
-                //TODO wyswietlanie galazki po prawej
+            else{
+                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() + 300,526,300));
+                arrSicks.get(i+1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
             }
         }
     }
@@ -77,6 +88,9 @@ public class GameView extends View {
         if(start)
         {
             woodcutter.draw(canvas);
+            for(int i = 0;i<arrSicks.size()-1; i++){
+            arrSicks.get(i).draw(canvas);
+           }
         }
 //         else{ //todo tu bedzie else do zrestartowania gry
 //             if(){
