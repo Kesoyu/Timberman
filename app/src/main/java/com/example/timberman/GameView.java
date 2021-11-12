@@ -74,7 +74,16 @@ public class GameView extends View {
 
     public void draw(Canvas canvas){
         super.draw(canvas);
-        woodcutter.draw(canvas);
+        if(start)
+        {
+            woodcutter.draw(canvas);
+        }
+//         else{ //todo tu bedzie else do zrestartowania gry
+//             if(){
+//
+//             }
+//             woodcutter.draw(canvas);
+//        }
         handler.postDelayed(r, 10);
     }
 
@@ -91,5 +100,13 @@ public class GameView extends View {
             }
         }
         return true;
+    }
+
+    public boolean isStart() {
+        return start;
+    }
+
+    public void setStart(boolean start) {
+        this.start = start;
     }
 }
