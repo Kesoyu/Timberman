@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ public class GameView extends View {
     private Runnable r;
     private float xValue, yValue,leftPersentage;
     private ArrayList<Stick>arrSicks;
+    public ArrayList<Integer> wylosowane = new ArrayList<Integer>();
     private int distance, sumbranch, los;
     private boolean start;
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -42,27 +44,53 @@ public class GameView extends View {
     }
 
     public void initSticks() {
-        sumbranch = 7;
+        sumbranch = 8;
         distance = 200 * Constants.SCREEN_HEIGHT / 1920;
         arrSicks = new ArrayList<>();
+        wylosowane.add(2);
 
-        this.arrSicks.add(new Stick(-47, 0, 1050, 300));
-        arrSicks.get(0).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
         for (int i = 0; i < sumbranch; i++) {
+            if(i==0)
+            {
+                los=2;
+            }
+            else
+            {
+                Random liczba = new Random();
+                los = liczba.nextInt(2);
+                wylosowane.add(los);
+            }
 
-            Random liczba = new Random();
-            los = liczba.nextInt(3);
 
             if (los == 0) {
-                this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() + 300, 1050, 300));
-                arrSicks.get(i+1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
+                if(wylosowane.get(i-1) != 0)
+                {
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
+                    arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                }
+                else
+                {
+                    this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() - 300, 1050, 300));
+                    arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
+                }
+
+
             } else if (los == 1) {
-                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() + 300,1050,300));
-                arrSicks.get(i+1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
+                if(wylosowane.get(i-1) != 1)
+                {
+                        this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
+                        arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                }
+                else{
+                        this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
+                        arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
+                }
             }
             else{
-                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() + 300,526,300));
-                arrSicks.get(i+1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                Log.d("MainActivity","dzaila"+i);
+
+                this.arrSicks.add(new Stick(478,1620,526,300));
+                arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
             }
         }
     }
