@@ -21,6 +21,7 @@ public class Woodcutter extends BaseObject {
     }
 
     public void draw(Canvas canvas){
+
         canvas.drawBitmap(this.getBm(),this.x, this.y, null);
     }
 
