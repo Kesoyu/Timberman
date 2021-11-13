@@ -39,19 +39,32 @@ public class Woodcutter extends BaseObject {
     public void onClick(int strona){
         if(strona==1){
             this.x = 170*Constants.SCREEN_WIDTH/1080;
-            idCurrentBitmap = 2;
             idCurrentBitmap = 0;
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    idCurrentBitmap = 1;
+                }
+            },100);
+            idCurrentBitmap = 2;
+
+
+
+
         }
         //Grruby masz tu animacje, popraw wygląd :)
         else if(strona==2){
             this.x = 700*Constants.SCREEN_WIDTH/1080;
-            idCurrentBitmap = 1;
+            idCurrentBitmap = 0;
+
+
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     idCurrentBitmap = 3;
                 }
-            },300);
+            },100);
         }
     }
 
