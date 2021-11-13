@@ -20,13 +20,22 @@
         android:layout_marginBottom="38dp"
         android:padding="5dp"
         app:srcCompat="@drawable/play" />
-
+    <ImageButton
+        android:id="@+id/btn_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="150dp"
+        android:visibility="invisible"
+        android:layout_marginBottom="38dp"
+        android:padding="5dp"
+        app:srcCompat="@drawable/select" />
     <ImageButton
         android:id="@+id/btn_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="38dp"
         android:layout_toStartOf="@+id/btn_start"
@@ -38,12 +47,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="51dp"
         android:layout_marginBottom="38dp"
         android:padding="5dp"
         app:srcCompat="@drawable/shop" />
+
+    <ImageButton
+        android:id="@+id/btn_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="620dp"
+        android:padding="5dp"
+        app:srcCompat="@drawable/pause" />
 
     <ImageView
         android:id="@+id/imageView_logo"
@@ -52,10 +71,9 @@
         android:layout_above="@+id/btn_start"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="-5dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="451dp"
         app:srcCompat="@drawable/logo" />
-
-
+    
 </RelativeLayout>
