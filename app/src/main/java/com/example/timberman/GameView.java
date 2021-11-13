@@ -92,10 +92,13 @@ public class GameView extends View {
         woodcutter.setX(170*Constants.SCREEN_WIDTH/1080);
         woodcutter.setY(1300*Constants.SCREEN_HEIGHT/1920);
         ArrayList<Bitmap> arrBms = new ArrayList<>();
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.cutleft));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.cutright));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right));
+
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left1));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left2));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left3));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right1));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right2));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right3));
         woodcutter.setArrBms(arrBms);
     }
 
@@ -103,10 +106,11 @@ public class GameView extends View {
         super.draw(canvas);
         if(start)
         {
-            woodcutter.draw(canvas);
+
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
            }
+            woodcutter.draw(canvas);
         }
 //         else{ //todo tu bedzie else do zrestartowania gry
 //             if(){
