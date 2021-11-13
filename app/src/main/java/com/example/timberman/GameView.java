@@ -45,34 +45,28 @@ public class GameView extends View {
     }
 
     public void initSticks() {
-        for (int i = 0; i < sumbranch; i++) {
-            if(i==0)
-            {
+        for (int i = 0; i < sumbranch; i++){
+            if(i==0){
                 los=2;
                 wylosowane.add(2);
             }
-            else
-            {
+            else{
                 Random liczba = new Random();
                 los = liczba.nextInt(2);
                 wylosowane.add(los);
             }
-            if (los == 0) {
-                if(wylosowane.get(i-1) != 0)
-                {
+            if (los == 0){
+                if(wylosowane.get(i-1) != 0){
                     this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                 }
-                else
-                {
+                else{
                     this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() - 300, 1050, 300));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                 }
-
-
-            } else if (los == 1) {
-                if(wylosowane.get(i-1) != 1)
-                {
+            }
+            else if (los == 1){
+                if(wylosowane.get(i-1) != 1){
                         this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
                         arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                 }
