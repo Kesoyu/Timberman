@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         btn_info=findViewById(R.id.btn_info);
         btn_shop=findViewById(R.id.btn_shop);
         gv=findViewById(R.id.gv);
-        gv.initSticks();
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

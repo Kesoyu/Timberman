@@ -25,14 +25,15 @@ public class GameView extends View {
     private android.os.Handler handler;
     private Runnable r;
     private float xValue, yValue,leftPersentage;
-    private ArrayList<Stick>arrSicks;
+    private ArrayList<Stick>arrSicks=new ArrayList<>();
     public ArrayList<Integer> wylosowane = new ArrayList<Integer>();
-    private int distance, sumbranch, los;
+    private int sumbranch=8, los;
     private boolean start;
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         start=false;
         initWoodCutter();
+        initSticks();
         leftPersentage = (Constants.SCREEN_WIDTH)*50/100;
         handler = new Handler();
         r = new Runnable() {
@@ -44,15 +45,11 @@ public class GameView extends View {
     }
 
     public void initSticks() {
-        sumbranch = 8;
-        distance = 200 * Constants.SCREEN_HEIGHT / 1920;
-        arrSicks = new ArrayList<>();
-        wylosowane.add(2);
-
         for (int i = 0; i < sumbranch; i++) {
             if(i==0)
             {
                 los=2;
+                wylosowane.add(2);
             }
             else
             {
@@ -60,8 +57,6 @@ public class GameView extends View {
                 los = liczba.nextInt(2);
                 wylosowane.add(los);
             }
-
-
             if (los == 0) {
                 if(wylosowane.get(i-1) != 0)
                 {
@@ -88,7 +83,6 @@ public class GameView extends View {
             }
             else{
                 Log.d("MainActivity","dzaila"+i);
-
                 this.arrSicks.add(new Stick(478,1620,526,300));
                 arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
             }
@@ -116,8 +110,8 @@ public class GameView extends View {
         if(start)
         {
             woodcutter.draw(canvas);
-            for(int i = 0;i<arrSicks.size()-1; i++){
-            arrSicks.get(i).draw(canvas);
+            for(int i = 0;i<arrSicks.size(); i++){
+                arrSicks.get(i).draw(canvas);
            }
         }
 //         else{ //todo tu bedzie else do zrestartowania gry
@@ -139,6 +133,41 @@ public class GameView extends View {
             }
             else{
                 woodcutter.onClick(2);
+            }
+            for(int i = 0;i<arrSicks.size(); i++){
+                arrSicks.get(i).setY(arrSicks.get(i).getY()+300);
+                if(arrSicks.get(i).getY()>1630){
+                    Log.d("MainActivity","asdasda"+i);
+                    arrSicks.remove(i);
+                    Random liczba = new Random();
+                    los = liczba.nextInt(2);
+                    wylosowane.add(los);
+                    Log.d("MainActivity","los"+los);
+                    Log.d("MainActivity","los-1"+wylosowane.get(wylosowane.size()-2));
+                    if (los == 0) {
+                        if(wylosowane.get(wylosowane.size()-2) != 0)
+                        {
+                            this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                        }
+                        else
+                        {
+                            this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size()-1).getY() - 300, 1050, 300));
+                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
+                        }
+                    } else if (los == 1) {
+                        if(wylosowane.get(wylosowane.size()-2) != 1)
+                        {
+                            this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                        }
+                        else{
+                            this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
+                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
+                        }
+                    }
+
+                }
             }
         }
         return true;
