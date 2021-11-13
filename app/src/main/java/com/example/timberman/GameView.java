@@ -67,12 +67,12 @@ public class GameView extends View {
             }
             else if (los == 1){
                 if(wylosowane.get(i-1) != 1){
-                        this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
-                        arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
+                    arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                 }
                 else{
-                        this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
-                        arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
+                    arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                 }
             }
             else{
