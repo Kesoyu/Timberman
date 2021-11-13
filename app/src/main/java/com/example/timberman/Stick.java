@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 
 public class Stick extends BaseObject{
     private  int idCurrentBitmap;
-
+    //ssss
     public Stick(float x, float y, int width, int height) {
         super(x, y, width, height);
     }

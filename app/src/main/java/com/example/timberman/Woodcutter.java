@@ -19,7 +19,7 @@ public class Woodcutter extends BaseObject {
     this.vHit = 5;
     this.idCurrentBitmap = 0;
     }
-
+    //ssss
     public void draw(Canvas canvas){
 
         canvas.drawBitmap(this.getBm(),this.x, this.y, null);
