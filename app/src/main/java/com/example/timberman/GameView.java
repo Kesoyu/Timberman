@@ -134,41 +134,36 @@ public class GameView extends View {
             else{
                 woodcutter.onClick(2);
             }
-            for(int i = 0;i<arrSicks.size(); i++){
-                arrSicks.get(i).setY(arrSicks.get(i).getY()+300);
-                if(arrSicks.get(i).getY()>1630){
-                    Log.d("MainActivity","asdasda"+i);
-                    arrSicks.remove(i);
-                    Random liczba = new Random();
-                    los = liczba.nextInt(2);
-                    wylosowane.add(los);
-                    Log.d("MainActivity","los"+los);
-                    Log.d("MainActivity","los-1"+wylosowane.get(wylosowane.size()-2));
-                    if (los == 0) {
-                        if(wylosowane.get(wylosowane.size()-2) != 0)
-                        {
-                            this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
-                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                        }
-                        else
-                        {
-                            this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size()-1).getY() - 300, 1050, 300));
-                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
-                        }
-                    } else if (los == 1) {
-                        if(wylosowane.get(wylosowane.size()-2) != 1)
-                        {
-                            this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
-                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                        }
-                        else{
-                            this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
-                            arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
-                        }
-                    }
 
+            //przesuwanie drzewa w dol
+            for(int i = 0;i<arrSicks.size(); i++) { arrSicks.get(i).setY(arrSicks.get(i).getY() + 300); }
+            //usuwanie dolngo elementu
+            arrSicks.remove(0);
+            //dodawanie elementu na gore
+            Random liczba = new Random();
+            los = liczba.nextInt(2);
+            wylosowane.add(los);
+            if (los == 0) {
+                if(wylosowane.get(wylosowane.size()-2) != 0){
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                    arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                }
+                else{
+                    this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size()-1).getY() - 300, 1050, 300));
+                    arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                 }
             }
+            else if (los == 1) {
+                if(wylosowane.get(wylosowane.size()-2) != 1){
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                    arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                }
+                else{
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
+                    arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
+                }
+            }
+
         }
         return true;
     }
