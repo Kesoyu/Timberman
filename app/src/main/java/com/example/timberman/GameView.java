@@ -184,7 +184,6 @@ public class GameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             if (start) {
-
                 xValue = event.getX();
                 yValue = event.getY();
                 if (xValue <= leftPersentage) {
@@ -194,30 +193,35 @@ public class GameView extends View {
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
                         smierc = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
-                    } else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
+                    }
+                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
                         EdoTensei();
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
                         smierc = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
-                    } else {
+                    }
+                    else {
                         EdoTensei();
                     }
-                } else {
+                }
+                else {
                     woodcutter.onClick(2);
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.PRAWO) {
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
                         smierc = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
-                    } else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
+                    }
+                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
                         EdoTensei();
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek) tu na dole jest to co probwale ja :D
                         woodcutter.setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
                         smierc = true;
                         start = false;//TODO smierc dziala tylko wypierdala cale drzewo XD
-                    } else {
+                    }
+                    else {
                         EdoTensei();
                     }
                 }
