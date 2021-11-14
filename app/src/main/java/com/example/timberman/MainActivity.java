@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     public static ImageView imageView_logo,imageView_timber_man;
     public static ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
     private GameView gv;
+    public boolean dead;
+
 
 
 
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         btn_select=findViewById(R.id.btn_select);
         gv=findViewById(R.id.gv);
 
+
+
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 btn_pause.setVisibility(view.VISIBLE);
                 imageView_logo.setVisibility(view.INVISIBLE);
 
-            }
-        });
+
+            }});
+
         btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

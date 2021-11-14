@@ -4,21 +4,17 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.LogRecord;
 
 public class GameView extends View {
     private Woodcutter woodcutter;
@@ -37,11 +33,11 @@ public class GameView extends View {
 
     private int progressCounter=100;
     private boolean start;
-    private boolean smierc;
+    public boolean is_he_dead;
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         start=false;
-        smierc=false;
+        is_he_dead =false;
         initWoodCutter();
         initSticks();
         leftPersentage = (Constants.SCREEN_WIDTH)*50/100;
@@ -121,7 +117,7 @@ public class GameView extends View {
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right1));
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right2));
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right3));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.bird1));
+        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
         woodcutter.setArrBms(arrBms);
     }
 
@@ -135,12 +131,13 @@ public class GameView extends View {
            }
             woodcutter.draw(canvas);
         }
-        if(smierc){ //todo tu bedzie else do zrestartowania gry
+        if(is_he_dead){ //todo tu bedzie else do zrestartowania gry
             woodcutter.smierc();
-             woodcutter.draw(canvas);
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
             }
+            woodcutter.draw(canvas);
+
         }
         handler.postDelayed(r, 10);
     }
@@ -191,14 +188,14 @@ public class GameView extends View {
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.LEWO) {
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        smierc = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
                     }
                     else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
                         EdoTensei();
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        smierc = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
                     }
                     else {
@@ -210,7 +207,7 @@ public class GameView extends View {
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.PRAWO) {
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        smierc = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        is_he_dead=true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
                     }
                     else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
@@ -218,8 +215,8 @@ public class GameView extends View {
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek) tu na dole jest to co probwale ja :D
                         woodcutter.setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
-                        smierc = true;
-                        start = false;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        is_he_dead = true;
+                        start = false;
                     }
                     else {
                         EdoTensei();
@@ -232,9 +229,17 @@ public class GameView extends View {
 
     public boolean isStart() {
         return start;
-    }
+    };
 
     public void setStart(boolean start) {
         this.start = start;
+    };
+
+    public boolean isIs_he_dead() {
+        return is_he_dead;
+    }
+
+    public void setIs_he_dead(boolean is_he_dead) {
+        this.is_he_dead = is_he_dead;
     }
 }
