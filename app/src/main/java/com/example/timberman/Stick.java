@@ -5,7 +5,10 @@ import android.graphics.Canvas;
 
 public class Stick extends BaseObject{
     private  int idCurrentBitmap;
-
+    public enum Kolor {
+        LEWO, PRAWO, SRODEK;
+    }
+    private Kolor kolor;
     public Stick(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
@@ -16,6 +19,14 @@ public class Stick extends BaseObject{
     @Override
     public void setBm(Bitmap Bm) {
       this.bm =  Bitmap.createScaledBitmap(Bm,this.width,this.height, true);
+    }
+
+    public Kolor getKolor() {
+        return kolor;
+    }
+
+    public void setKolor(Kolor kolor) {
+        this.kolor = kolor;
     }
 }
 
