@@ -67,7 +67,9 @@ public class Woodcutter extends BaseObject {
             },100);
         }
     }
-
+    public void smierc(){
+        idCurrentBitmap=6;
+    }
     @Override
     public Bitmap getBm() {
         return this.getArrBms().get(idCurrentBitmap);
