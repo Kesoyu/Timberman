@@ -30,6 +30,11 @@ public class GameView extends View {
     public ArrayList<Integer> wylosowane = new ArrayList<Integer>();
     private int sumbranch=8, los;
     private ProgressBar pb;
+
+    public void setPb(ProgressBar pb) {
+        this.pb = pb;
+    }
+
     private int progressCounter=100;
     private boolean start;
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -37,17 +42,18 @@ public class GameView extends View {
         start=false;
         initWoodCutter();
         initSticks();
-        pb=(ProgressBar) findViewById(R.id.progressBar);
         leftPersentage = (Constants.SCREEN_WIDTH)*50/100;
         handler = new Handler();
         r = new Runnable() {
             @Override
             public void run() {
                 invalidate();
-                //pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
-                progressCounter-=5;
-                if (progressCounter==0){
-                    progressCounter=100;
+                if(pb!=null){
+                    pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
+                    progressCounter-=1;
+                    if (progressCounter==0){
+                        progressCounter=100;
+                    }
                 }
             }
         };

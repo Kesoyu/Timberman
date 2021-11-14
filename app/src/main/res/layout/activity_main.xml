@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:id="@+id/progressBar"/>
+        android:id="@+id/idpbbar"/>
+
     <com.example.timberman.GameView
         android:id="@+id/gv"
         android:layout_width="match_parent"

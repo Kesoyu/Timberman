@@ -15,14 +15,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static RelativeLayout rl_game_over;
-    private  GameView gv;
     public static ImageView imageView_logo,imageView_timber_man;
     public static ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
+    private GameView gv;
 
 
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
                 gv.setStart(true);
                 //w tymi miejscu trzeba dopisać schowanie punkotw
                 btn_start.setVisibility(view.INVISIBLE);
