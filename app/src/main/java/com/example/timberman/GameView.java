@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
@@ -26,7 +27,8 @@ public class GameView extends View {
     public ArrayList<Integer> wylosowane = new ArrayList<Integer>();
     private int sumbranch=8, los;
     private ProgressBar pb;
-
+//    private View view;
+//    private ImageButton btn_shop;
     public void setPb(ProgressBar pb) {
         this.pb = pb;
     }
@@ -36,6 +38,8 @@ public class GameView extends View {
     public boolean is_he_dead;
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+//        btn_shop=findViewById(R.id.btn_shop);
+//        view=this.view;
         start=false;
         is_he_dead =false;
         initWoodCutter();
@@ -135,8 +139,12 @@ public class GameView extends View {
             woodcutter.smierc();
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
+
             }
+
             woodcutter.draw(canvas);
+
+
 
         }
         handler.postDelayed(r, 10);
@@ -178,6 +186,7 @@ public class GameView extends View {
     }
 
     @Override
+
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             if (start) {
@@ -190,6 +199,7 @@ public class GameView extends View {
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
                         is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
+
                     }
                     else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
                         EdoTensei();
@@ -197,6 +207,8 @@ public class GameView extends View {
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
                         is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
                         start = false;
+
+
                     }
                     else {
                         EdoTensei();

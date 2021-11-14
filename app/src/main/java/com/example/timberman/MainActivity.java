@@ -1,7 +1,7 @@
 package com.example.timberman;
 
 import static com.example.timberman.R.id.btn_shop_back;
-import static com.example.timberman.R.id.start;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
         btn_select=findViewById(R.id.btn_select);
         gv=findViewById(R.id.gv);
 
-
-
+        if(gv.isIs_he_dead()==true)
+        {
+            btn_shop.setVisibility(gv.VISIBLE);
+        }
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this,
                         R.string.pause_string, Toast.LENGTH_LONG).show();
+                btn_shop.setVisibility(View.VISIBLE);
+
 
             }
         });
