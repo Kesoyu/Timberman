@@ -4,14 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-
+import android.graphics.drawable.AnimationDrawable;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -32,7 +34,6 @@ public class GameView extends View {
     public void setPb(ProgressBar pb) {
         this.pb = pb;
     }
-
     private int progressCounter=100;
     private boolean start;
     public boolean is_he_dead;
@@ -129,7 +130,6 @@ public class GameView extends View {
         super.draw(canvas);
         if(start)
         {
-
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
            }
@@ -193,6 +193,8 @@ public class GameView extends View {
                 xValue = event.getX();
                 yValue = event.getY();
                 if (xValue <= leftPersentage) {
+                    Constants.click=1;
+                    Constants.clickL++;
                     woodcutter.onClick(1);
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.LEWO) {
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
@@ -215,6 +217,8 @@ public class GameView extends View {
                     }
                 }
                 else {
+                    Constants.click=2;
+                    Constants.clickR++;
                     woodcutter.onClick(2);
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.PRAWO) {
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
