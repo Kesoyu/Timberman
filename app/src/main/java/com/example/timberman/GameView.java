@@ -26,7 +26,7 @@ public class GameView extends View {
 
     private int sumbranch=8, los;
     private float xValue, leftPersentage;
-    private boolean changeSide;
+    private boolean changeSide=false;
 
 
     private ProgressBar pb;
@@ -73,9 +73,7 @@ public class GameView extends View {
     }
 
     public void initSticks() {
-                los=2;
-                changeSide=false;
-//                wylosowane.add(2);
+
         //pierwszy element
         this.arrSicks.add(new Stick(478,1620,526,300));
         arrSicks.get(0).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
@@ -85,8 +83,7 @@ public class GameView extends View {
         for (int i = 1; i < sumbranch; i++){
                 Random liczba = new Random();
                 los = liczba.nextInt(2);
-                Log.d("MainActivity","Losowa liczba: "+i);
-//                wylosowane.add(los);
+
             if (los == 0){
                 if (!changeSide) {
                     this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() - 300, 1050, 300));
