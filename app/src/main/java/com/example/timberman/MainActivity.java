@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         gv=findViewById(R.id.gv);
         if(gv.isIs_he_dead())
         {
-            btn_shop.setVisibility(gv.VISIBLE);
+            btn_shop.setVisibility(View.VISIBLE);
         }
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 btn_start.setVisibility(INVISIBLE);
                 btn_info.setVisibility(INVISIBLE);
                 btn_shop.setVisibility(INVISIBLE);
-                btn_pause.setVisibility(view.VISIBLE);
+                btn_pause.setVisibility(View.VISIBLE);
                 imageView_logo.setVisibility(INVISIBLE);
 
 
@@ -161,9 +161,9 @@ public class MainActivity extends AppCompatActivity {
         btn_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btn_start.setVisibility(view.VISIBLE);
-                btn_info.setVisibility(view.VISIBLE);
-                btn_shop.setVisibility(view.VISIBLE);
+                btn_start.setVisibility(View.VISIBLE);
+                btn_info.setVisibility(View.VISIBLE);
+                btn_shop.setVisibility(View.VISIBLE);
                 btn_select.setVisibility(INVISIBLE);
             }
         });
