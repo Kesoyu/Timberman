@@ -4,50 +4,60 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.graphics.drawable.AnimationDrawable;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameView extends View {
+    private final android.os.Handler handler;
+    private final Runnable runnable;
+
     private Woodcutter woodcutter;
-    private Stick stick;
-    private android.os.Handler handler;
-    private Runnable r;
-    private float xValue, yValue,leftPersentage;
+
     private ArrayList<Stick>arrSicks=new ArrayList<>();
-    public ArrayList<Integer> wylosowane = new ArrayList<Integer>();
+
+
     private int sumbranch=8, los;
+    private float xValue, leftPersentage;
+    private boolean changeSide;
+
+
     private ProgressBar pb;
-//    private View view;
-//    private ImageButton btn_shop;
     public void setPb(ProgressBar pb) {
         this.pb = pb;
     }
     private int progressCounter=100;
+
+
     private boolean start;
     public boolean is_he_dead;
+
+//    private Stick stick;
+//    private View view;
+//    private ImageButton btn_shop;
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 //        btn_shop=findViewById(R.id.btn_shop);
 //        view=this.view;
-        start=false;
-        is_he_dead =false;
+
+        start = false;
+        is_he_dead = false;
+
         initWoodCutter();
         initSticks();
+
         leftPersentage = (Constants.SCREEN_WIDTH)*50/100;
+
         handler = new Handler();
-        r = new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
                 invalidate();
@@ -63,45 +73,45 @@ public class GameView extends View {
     }
 
     public void initSticks() {
-        for (int i = 0; i < sumbranch; i++){
-            if(i==0){
                 los=2;
-                wylosowane.add(2);
-            }
-            else{
+                changeSide=false;
+//                wylosowane.add(2);
+        //pierwszy element
+        this.arrSicks.add(new Stick(478,1620,526,300));
+        arrSicks.get(0).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+        arrSicks.get(0).setKolor(Stick.Kolor.SRODEK);
+
+
+        for (int i = 1; i < sumbranch; i++){
                 Random liczba = new Random();
                 los = liczba.nextInt(2);
-                wylosowane.add(los);
-            }
+                Log.d("MainActivity","Losowa liczba: "+i);
+//                wylosowane.add(los);
             if (los == 0){
-                if(wylosowane.get(i-1) != 0){
-                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
-                    arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                    arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
-                }
-                else{
+                if (!changeSide) {
                     this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() - 300, 1050, 300));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                     arrSicks.get(i).setKolor(Stick.Kolor.LEWO);
                 }
-            }
-            else if (los == 1){
-                if(wylosowane.get(i-1) != 1){
-                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
+                else{
+                    this.arrSicks.add(new Stick(478, arrSicks.get(arrSicks.size() - 1).getY() - 300, 526, 300));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                     arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
+                    changeSide=false;
                 }
-                else{
+            }
+            else if (los == 1){
+                if (changeSide) {
                     this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                     arrSicks.get(i).setKolor(Stick.Kolor.PRAWO);
                 }
-            }
-            else{
-                Log.d("MainActivity","dzaila"+i);
-                this.arrSicks.add(new Stick(478,1620,526,300));
-                arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
+                else{
+                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
+                    arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                    arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
+                    changeSide=true;
+                }
             }
         }
     }
@@ -142,40 +152,45 @@ public class GameView extends View {
             }
             woodcutter.draw(canvas);
         }
-        handler.postDelayed(r, 10);
+        handler.postDelayed(runnable, 10);
     }
 
-    private void EdoTensei(){//Witam nie miale pomyslu an nazwe do tego jak chcecie to zmienice otuszuwu owy element zawiera rysywanie drzewka musialem tak przezkonwertowac zeby mi sie ladnie Umieranie postaci robilo :D
+    private void EdoTensei(){
         //przesuwanie drzewa w dol
         for(int i = 0;i<arrSicks.size(); i++) { arrSicks.get(i).setY(arrSicks.get(i).getY() + 300); }
+
         //usuwanie dolngo elementu
         arrSicks.remove(0);
+        changeSide=false;
+
         //dodawanie elementu na gore
         Random liczba = new Random();
         los = liczba.nextInt(2);
-        wylosowane.add(los);
+
         if (los == 0) {
-            if(wylosowane.get(wylosowane.size()-2) != 0){
-                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
-                arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
-            }
-            else{
+            if (!changeSide) {
                 this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size()-1).getY() - 300, 1050, 300));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.LEWO);
             }
-        }
-        else if (los == 1) {
-            if(wylosowane.get(wylosowane.size()-2) != 1){
+            else{
                 this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
+                changeSide=false;
             }
-            else{
+        }
+        else if (los == 1) {
+            if (changeSide) {
                 this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.PRAWO);
+            }
+            else{
+                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
+                arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
+                changeSide=true;
             }
         }
     }
@@ -186,7 +201,7 @@ public class GameView extends View {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             if (start) {
                 xValue = event.getX();
-                yValue = event.getY();
+
                 if (xValue <= leftPersentage) {
                     Constants.click=1;
                     Constants.clickL++;
