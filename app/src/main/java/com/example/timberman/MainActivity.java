@@ -26,9 +26,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
-    public static RelativeLayout rl_game_over;
-    public static ImageView imageView_logo,imageView_timber_man;
-    public static ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
+    public RelativeLayout rl_game_over;
+    public ImageView imageView_logo,imageView_timber_man;
+    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
     private GameView gv;
     public int click;
     public boolean dead;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         btn_shop=findViewById(R.id.btn_shop);
         btn_select=findViewById(R.id.btn_select);
         gv=findViewById(R.id.gv);
-        if(gv.isIs_he_dead()==true)
+        if(gv.isIs_he_dead())
         {
             btn_shop.setVisibility(gv.VISIBLE);
         }
