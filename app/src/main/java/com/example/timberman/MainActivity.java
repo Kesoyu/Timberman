@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
+                gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
 
                 gv.setOnTouchListener(new View.OnTouchListener() {
                     @Override

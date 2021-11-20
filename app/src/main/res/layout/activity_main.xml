@@ -6,11 +6,6 @@
     android:background="@drawable/zzzzz"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:id="@+id/idpbbar"/>
     <ImageView
         android:id="@+id/animation"
         android:layout_width="300dp"
@@ -86,6 +81,12 @@
         android:id="@+id/gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/idpbbar"/>
 
     <ImageButton
         android:id="@+id/btn_start"
