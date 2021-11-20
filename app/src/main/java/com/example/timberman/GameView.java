@@ -139,13 +139,8 @@ public class GameView extends View {
             woodcutter.smierc();
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
-
             }
-
             woodcutter.draw(canvas);
-
-
-
         }
         handler.postDelayed(r, 10);
     }

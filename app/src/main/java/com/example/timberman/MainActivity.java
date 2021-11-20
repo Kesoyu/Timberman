@@ -60,35 +60,32 @@ public class MainActivity extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
+//                gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
+
                 gv.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
                         if (Constants.click == 2 && Constants.clickR!=0) {
-                                if (Constants.clickR == 1) {
-                                    ImageView AnimatedTree = (ImageView) findViewById(R.id.animation);
-                                    AnimatedTree.setImageResource(R.drawable.animation);
-                                    AnimationDrawable runningTree = (AnimationDrawable) AnimatedTree.getDrawable();
-                                    runningTree.start();
-                                }
+                            if (Constants.clickR == 1) {
+                                ImageView AnimatedTree = (ImageView) findViewById(R.id.animation);
+                                AnimatedTree.setImageResource(R.drawable.animation);
+                                AnimationDrawable runningTree = (AnimationDrawable) AnimatedTree.getDrawable();
+                                runningTree.start();
+                            }
                             else if (Constants.clickR == 2) {
-                                    ImageView AnimatedTree2 = (ImageView) findViewById(R.id.animation2);
-                                    AnimatedTree2.setImageResource(R.drawable.animation2);
-                                    AnimationDrawable runningTree2 = (AnimationDrawable) AnimatedTree2.getDrawable();
-                                    runningTree2.start();
+                                ImageView AnimatedTree2 = (ImageView) findViewById(R.id.animation2);
+                                AnimatedTree2.setImageResource(R.drawable.animation2);
+                                AnimationDrawable runningTree2 = (AnimationDrawable) AnimatedTree2.getDrawable();
+                                runningTree2.start();
                             }
                             else if  (Constants.clickR == 3) {
-                                    ImageView AnimatedTree3 = (ImageView) findViewById(R.id.animation3);
-                                    AnimatedTree3.setImageResource(R.drawable.animation3);
-                                    AnimationDrawable runningTree3 = (AnimationDrawable) AnimatedTree3.getDrawable();
-                                    runningTree3.start();
-                                    Constants.clickR =0;
+                                ImageView AnimatedTree3 = (ImageView) findViewById(R.id.animation3);
+                                AnimatedTree3.setImageResource(R.drawable.animation3);
+                                AnimationDrawable runningTree3 = (AnimationDrawable) AnimatedTree3.getDrawable();
+                                runningTree3.start();
+                                Constants.clickR =0;
                             }
-                            else{
-                                    Constants.clickR =0;
-                                }
                             Constants.click = 0;
-                                    return false;
                         }
                         else if (Constants.click == 1 && Constants.clickL!=0) {
                             if (Constants.clickL == 1) {
@@ -96,28 +93,22 @@ public class MainActivity extends AppCompatActivity {
                                 AnimatedTree4.setImageResource(R.drawable.animation4);
                                 AnimationDrawable runningTree4 = (AnimationDrawable) AnimatedTree4.getDrawable();
                                 runningTree4.start();
-
                             }
                            else  if (Constants.clickL == 2) {
-                                    ImageView AnimatedTree5 = (ImageView) findViewById(R.id.animation5);
-                                    AnimatedTree5.setImageResource(R.drawable.animation5);
-                                    AnimationDrawable runningTree5 = (AnimationDrawable) AnimatedTree5.getDrawable();
-                                    runningTree5.start();
-
+                               ImageView AnimatedTree5 = (ImageView) findViewById(R.id.animation5);
+                               AnimatedTree5.setImageResource(R.drawable.animation5);
+                               AnimationDrawable runningTree5 = (AnimationDrawable) AnimatedTree5.getDrawable();
+                               runningTree5.start();
                             }
                            else  if (Constants.clickL == 3) {
-                                    ImageView AnimatedTree6 = (ImageView) findViewById(R.id.animation6);
-                                    AnimatedTree6.setImageResource(R.drawable.animation6);
-                                    AnimationDrawable runningTree6 = (AnimationDrawable) AnimatedTree6.getDrawable();
-                                    runningTree6.start();
-                                Constants.clickL =0;
+                               ImageView AnimatedTree6 = (ImageView) findViewById(R.id.animation6);
+                               AnimatedTree6.setImageResource(R.drawable.animation6);
+                               AnimationDrawable runningTree6 = (AnimationDrawable) AnimatedTree6.getDrawable();
+                               runningTree6.start();
+                               Constants.clickL =0;
 
                             }
-                            else {
-                                Constants.clickL=0;
-                            }
                             Constants.click = 0;
-                            return false;
                         }
                         return false;
                     }
