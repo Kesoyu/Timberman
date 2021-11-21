@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -18,8 +20,9 @@ import java.util.Random;
 public class GameView extends View {
     private final android.os.Handler handler;
     private final Runnable runnable;
-
     private Woodcutter woodcutter;
+    private  int score;
+
 
     private ArrayList<Stick>arrSicks=new ArrayList<>();
 
@@ -38,6 +41,7 @@ public class GameView extends View {
 
     private boolean start;
     public boolean is_he_dead;
+    public static TextView txt_score;
 
 //    private Stick stick;
 //    private View view;
@@ -47,7 +51,8 @@ public class GameView extends View {
         super(context, attrs);
 //        btn_shop=findViewById(R.id.btn_shop);
 //        view=this.view;
-
+        txt_score=findViewById(R.id.txt_score);
+        score=0;
         start = false;
         is_he_dead = false;
 
@@ -140,7 +145,10 @@ public class GameView extends View {
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
            }
+
             woodcutter.draw(canvas);
+
+
         }
         if(is_he_dead){ //todo tu bedzie else do zrestartowania gry
             woodcutter.smierc();
@@ -153,6 +161,9 @@ public class GameView extends View {
     }
 
     private void EdoTensei(){
+        score++;
+        //MainActivity.txt_score.setText(""+score);//todo ta linijka wypieradala cały program a jest potrzebna do pokazania nowych pkt ;) 
+
         //przesuwanie drzewa w dol
         for(int i = 0;i<arrSicks.size(); i++) { arrSicks.get(i).setY(arrSicks.get(i).getY() + 300); }
 
@@ -189,6 +200,7 @@ public class GameView extends View {
                 changeSide=true;
             }
         }
+
     }
 
     @Override
@@ -196,6 +208,7 @@ public class GameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             if (start) {
+
                 xValue = event.getX();
 
                 if (xValue <= leftPersentage) {
@@ -241,7 +254,9 @@ public class GameView extends View {
                         start = false;
                     }
                     else {
+
                         EdoTensei();
+
                     }
                 }
             }
