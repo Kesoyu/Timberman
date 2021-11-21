@@ -158,7 +158,6 @@ public class GameView extends View {
 
         //usuwanie dolngo elementu
         arrSicks.remove(0);
-        changeSide=false;
 
         //dodawanie elementu na gore
         Random liczba = new Random();
