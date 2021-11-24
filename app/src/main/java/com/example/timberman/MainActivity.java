@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("log", "zobacz"+gv.getScore());
                 int wypisz=gv.getScore();
                // Log.d("gv","gw"+wypisz);
-               txt_score.setText(""+gv.score);
+              // txt_score.setText(""+gv.score);
                 if (Constants.click == 2 && Constants.clickR!=0) {
                     switch (Constants.clickR){
 
