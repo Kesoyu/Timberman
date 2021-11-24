@@ -7,4 +7,5 @@ public class Constants {
     public static int click;
     public static int clickR=0;
     public static int clickL=0;
+
 }

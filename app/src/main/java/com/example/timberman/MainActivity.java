@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     public ImageView imageView_logo;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
     private GameView gv;
+
+
 //    public RelativeLayout rl_game_over;
 //    public ImageView imageView_timber_man;
 //    public int click;
@@ -37,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();// wyświetlacz w telefonie
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         //wysokosc i szerokosc ekranu
-        txt_score=findViewById(R.id.txt_score);
+        txt_score=(TextView) findViewById(R.id.txt_score);
+
+
 
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gv.setStart(true);
 
+
                 //w tymi miejscu trzeba dopisać schowanie punkotw
 
                 btn_start.setVisibility(INVISIBLE);
@@ -78,8 +84,13 @@ public class MainActivity extends AppCompatActivity {
         gv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.d("log", "zobacz"+gv.getScore());
+                int wypisz=gv.getScore();
+               // Log.d("gv","gw"+wypisz);
+               txt_score.setText(""+gv.score);
                 if (Constants.click == 2 && Constants.clickR!=0) {
                     switch (Constants.clickR){
+
                         case 1:
                             ImageView AnimatedTree = (ImageView) findViewById(R.id.animation);
                             AnimatedTree.setImageResource(R.drawable.animation);

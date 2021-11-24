@@ -21,7 +21,7 @@ public class GameView extends View {
     private final android.os.Handler handler;
     private final Runnable runnable;
     private Woodcutter woodcutter;
-    private  int score;
+
 
 
     private ArrayList<Stick>arrSicks=new ArrayList<>();
@@ -40,6 +40,7 @@ public class GameView extends View {
 
 
     private boolean start;
+    public  int score;
     public boolean is_he_dead;
     public static TextView txt_score;
 
@@ -51,10 +52,11 @@ public class GameView extends View {
         super(context, attrs);
 //        btn_shop=findViewById(R.id.btn_shop);
 //        view=this.view;
-        txt_score=findViewById(R.id.txt_score);
-        score=0;
+       //txt_score=findViewById(R.id.txt_score);
+        //score=0;
         start = false;
         is_he_dead = false;
+        score=0;
 
         initWoodCutter();
         initSticks();
@@ -161,8 +163,9 @@ public class GameView extends View {
     }
 
     private void EdoTensei(){
-        score++;
-        //MainActivity.txt_score.setText(""+score);//todo ta linijka wypieradala cały program a jest potrzebna do pokazania nowych pkt ;) 
+
+
+     //  MainActivity.txt_score.setText(""+score);//todo ta linijka wypieradala cały program a jest potrzebna do pokazania nowych pkt ;)
 
         //przesuwanie drzewa w dol
         for(int i = 0;i<arrSicks.size(); i++) { arrSicks.get(i).setY(arrSicks.get(i).getY() + 300); }
@@ -254,7 +257,8 @@ public class GameView extends View {
                         start = false;
                     }
                     else {
-
+                        score++;
+                       Log.d("pisjhd","wiadomosc"+getScore());
                         EdoTensei();
 
                     }
@@ -262,6 +266,14 @@ public class GameView extends View {
             }
         }
         return true;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public boolean isStart() {
