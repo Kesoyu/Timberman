@@ -235,6 +235,7 @@ public class GameView extends View {
 
                     }
                     else {
+                        Constants.score++;
                         EdoTensei();
                     }
                 }
@@ -258,6 +259,7 @@ public class GameView extends View {
                     }
                     else {
                         score++;
+                        Constants.score++;
                        Log.d("pisjhd","wiadomosc"+getScore());
                         EdoTensei();
 

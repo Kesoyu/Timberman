@@ -20,7 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
-    public static TextView txt_score;
+//    public static TextView txt_score;
     public ImageView imageView_logo;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
     private GameView gv;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics dm = new DisplayMetrics();// wyświetlacz w telefonie
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         //wysokosc i szerokosc ekranu
-        txt_score=(TextView) findViewById(R.id.txt_score);
+//        txt_score=(TextView) findViewById(R.id.txt_score);
 
 
 
@@ -84,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
         gv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                TextView txt_score = (TextView) findViewById(R.id.txt_score);
+                txt_score.setText(" "+Constants.score);
+
+
                 Log.d("log", "zobacz"+gv.getScore());
                 int wypisz=gv.getScore();
                // Log.d("gv","gw"+wypisz);
