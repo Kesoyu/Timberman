@@ -6,9 +6,12 @@ import static android.view.View.INVISIBLE;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -19,6 +22,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+
 public class MainActivity extends AppCompatActivity {
 //    public static TextView txt_score;
     public ImageView imageView_logo;
@@ -39,15 +48,19 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);// ustawia full screen
         DisplayMetrics dm = new DisplayMetrics();// wyświetlacz w telefonie
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        //wczytywanie danych z pliku
+        loadData();
+
         //wysokosc i szerokosc ekranu
-//        txt_score=(TextView) findViewById(R.id.txt_score);
-
-
-
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
 
+
         setContentView(R.layout.activity_main);
+
+
+        TextView txt_score = (TextView) findViewById(R.id.txt_score); txt_score.setText(" "+Constants.bestScore); // linia do sprawdzania czy wynik dobrze sie zapisuje
 
         imageView_logo=findViewById(R.id.imageView_logo);
         btn_pause=findViewById(R.id.btn_pause);
@@ -148,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,4 +194,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    // zapis do pliku najlepszego wyniku gracza
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(Constants.score>Constants.bestScore){ saveData(); }
+    }
+    private  void saveData() {
+        SharedPreferences prefs = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("best_score", Constants.score);
+        editor.apply();
+    }
+    private  void loadData() {
+        SharedPreferences prefs = getSharedPreferences("pref", MODE_PRIVATE);
+        Constants.bestScore = prefs.getInt("best_score", 0);
+    }
+
 }

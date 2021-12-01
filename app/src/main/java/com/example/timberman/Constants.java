@@ -8,5 +8,5 @@ public class Constants {
     public static int clickR=0;
     public static int clickL=0;
     public static int score=0;
-
+    public static int bestScore=0;
 }
