@@ -176,9 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);*/
                 Constants.Restart=true;
                 Constants.score=0;
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
+                recreate();
                 //w tymi miejscu trzeba dopisać schowanie punkotw
 
             }
