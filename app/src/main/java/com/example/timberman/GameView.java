@@ -1,6 +1,7 @@
 package com.example.timberman;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -41,9 +42,9 @@ public class GameView extends View {
 
     private boolean start;
     public  int score;
-    public boolean is_he_dead;
     public static TextView txt_score;
 
+    /*public boolean is_he_dead;*/
 //    private Stick stick;
 //    private View view;
 //    private ImageButton btn_shop;
@@ -55,7 +56,8 @@ public class GameView extends View {
        //txt_score=findViewById(R.id.txt_score);
         //score=0;
         start = false;
-        is_he_dead = false;
+        //is_he_dead = false;
+        Constants.IsDead = false;
         score=0;
 
         initWoodCutter();
@@ -144,15 +146,15 @@ public class GameView extends View {
         super.draw(canvas);
         if(start)
         {
+
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
            }
-
             woodcutter.draw(canvas);
 
 
         }
-        if(is_he_dead){ //todo tu bedzie else do zrestartowania gry
+        if(Constants.IsDead){ //todo tu bedzie else do zrestartowania gry
             woodcutter.smierc();
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
@@ -221,7 +223,8 @@ public class GameView extends View {
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.LEWO) {
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        //is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        Constants.IsDead=true;
                         start = false;
 
                     }
@@ -229,7 +232,8 @@ public class GameView extends View {
                         EdoTensei();
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        //is_he_dead = true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        Constants.IsDead=true;
                         start = false;
 
 
@@ -246,7 +250,8 @@ public class GameView extends View {
                     if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.PRAWO) {
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        is_he_dead=true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        //is_he_dead=true;//TODO smierc dziala tylko wypierdala cale drzewo XD
+                        Constants.IsDead=true;
                         start = false;
                     }
                     else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
@@ -254,7 +259,8 @@ public class GameView extends View {
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek) tu na dole jest to co probwale ja :D
                         woodcutter.setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
-                        is_he_dead = true;
+                        //is_he_dead = true;
+                        Constants.IsDead=true;
                         start = false;
                     }
                     else {
@@ -286,11 +292,11 @@ public class GameView extends View {
         this.start = start;
     };
 
-    public boolean isIs_he_dead() {
+    /*public boolean isIs_he_dead() {
         return is_he_dead;
-    }
+    }*/
 
-    public void setIs_he_dead(boolean is_he_dead) {
+   /* public void setIs_he_dead(boolean is_he_dead) {
         this.is_he_dead = is_he_dead;
-    }
+    }*/
 }

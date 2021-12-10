@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
     private GameView gv;
 
-
 //    public RelativeLayout rl_game_over;
 //    public ImageView imageView_timber_man;
 //    public int click;
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         //wczytywanie danych z pliku
         loadData();
-
         //wysokosc i szerokosc ekranu
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
@@ -71,27 +69,34 @@ public class MainActivity extends AppCompatActivity {
         gv=findViewById(R.id.gv);
         gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
 
-        if(gv.isIs_he_dead()) {
-            btn_shop.setVisibility(View.VISIBLE);
+
+        if(Constants.Restart==false) {
+            btn_start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gv.setStart(true);
+
+                    //w tymi miejscu trzeba dopisać schowanie punkotw
+
+                    btn_start.setVisibility(INVISIBLE);
+                    btn_info.setVisibility(INVISIBLE);
+                    btn_shop.setVisibility(INVISIBLE);
+                    btn_pause.setVisibility(View.VISIBLE);
+                    imageView_logo.setVisibility(INVISIBLE);
+                }
+            });
         }
+        else{
+            gv.setStart(true);
 
+            //w tymi miejscu trzeba dopisać schowanie punkotw
 
-
-        btn_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gv.setStart(true);
-
-
-                //w tymi miejscu trzeba dopisać schowanie punkotw
-
-                btn_start.setVisibility(INVISIBLE);
-                btn_info.setVisibility(INVISIBLE);
-                btn_shop.setVisibility(INVISIBLE);
-                btn_pause.setVisibility(View.VISIBLE);
-                imageView_logo.setVisibility(INVISIBLE);
-            }});
-
+            btn_start.setVisibility(INVISIBLE);
+            btn_info.setVisibility(INVISIBLE);
+            btn_shop.setVisibility(INVISIBLE);
+            btn_pause.setVisibility(View.VISIBLE);
+            imageView_logo.setVisibility(INVISIBLE);
+        }
 
         // Animacja
         gv.setOnTouchListener(new View.OnTouchListener() {
@@ -101,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 TextView txt_score = (TextView) findViewById(R.id.txt_score);
                 txt_score.setText(" "+Constants.score);
 
+                if(Constants.IsDead){
+                    btn_shop.setVisibility(View.VISIBLE);
+                }
 
                 Log.d("log", "zobacz"+gv.getScore());
                 int wypisz=gv.getScore();
@@ -164,8 +172,15 @@ public class MainActivity extends AppCompatActivity {
         btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,ShopActivity.class);
+                /*Intent intent = new Intent(MainActivity.this,ShopActivity.class);
+                startActivity(intent);*/
+                Constants.Restart=true;
+                Constants.score=0;
+                Intent intent = getIntent();
+                finish();
                 startActivity(intent);
+                //w tymi miejscu trzeba dopisać schowanie punkotw
+
             }
         });
         btn_info.setOnClickListener(new View.OnClickListener() {

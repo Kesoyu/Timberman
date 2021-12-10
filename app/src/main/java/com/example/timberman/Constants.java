@@ -9,4 +9,6 @@ public class Constants {
     public static int clickL=0;
     public static int score=0;
     public static int bestScore=0;
+    public static boolean IsDead=false;
+    public static boolean Restart=false;
 }

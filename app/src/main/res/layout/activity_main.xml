@@ -164,20 +164,21 @@
         android:layout_marginTop="0dp"
         android:layout_marginBottom="451dp"
         app:srcCompat="@drawable/logo" />
+
     <RelativeLayout
         android:id="@+id/rl_game_over"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/txt_game_over"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GAME OVER"
-            android:textSize="50dp"
             android:layout_centerInParent="true"
+            android:text="GAME OVER"
             android:textColor="#ff00"
-            />
+            android:textSize="50dp"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
