@@ -186,8 +186,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Constants.Restart=true;
+                Constants.bestScore=Constants.score;
                 Constants.score=0;
+
                 recreate();
+
                 //w tymi miejscu trzeba dopisać schowanie punkotw
             }
         });

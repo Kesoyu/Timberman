@@ -99,6 +99,19 @@
         android:textColor="#002247"
         android:textSize="50sp" />
 
+
+    <TextView
+        android:id="@+id/txt_best_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="@string/_0"
+        android:textColor="#002247"
+        android:textSize="30sp"
+         />
+
     <ImageButton
         android:id="@+id/btn_retry"
         android:visibility="invisible"
@@ -192,8 +205,8 @@
             android:textSize="50dp"
             android:visibility="invisible" />
 
-    </RelativeLayout>
 
+    </RelativeLayout>
 
 
 </RelativeLayout>
