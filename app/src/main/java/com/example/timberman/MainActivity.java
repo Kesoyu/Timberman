@@ -30,8 +30,8 @@ import java.lang.reflect.Type;
 
 public class MainActivity extends AppCompatActivity {
 //    public static TextView txt_score;
-    public ImageView imageView_logo;
-    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select;
+    public ImageView imageView_logo,imageView_game_over;
+    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry;
     private GameView gv;
 
 //    public RelativeLayout rl_game_over;
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         btn_start=findViewById(R.id.btn_start);
         btn_info=findViewById(R.id.btn_info);
         btn_shop=findViewById(R.id.btn_shop);
+
+        btn_retry=findViewById(R.id.btn_retry);
         btn_select=findViewById(R.id.btn_select);
         gv=findViewById(R.id.gv);
         gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     //w tymi miejscu trzeba dopisać schowanie punkotw
 
                     btn_start.setVisibility(INVISIBLE);
+                    btn_retry.setVisibility(INVISIBLE);
                     btn_info.setVisibility(INVISIBLE);
                     btn_shop.setVisibility(INVISIBLE);
                     btn_pause.setVisibility(View.VISIBLE);
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             btn_start.setVisibility(INVISIBLE);
             btn_info.setVisibility(INVISIBLE);
             btn_shop.setVisibility(INVISIBLE);
+            btn_retry.setVisibility(INVISIBLE);
             btn_pause.setVisibility(View.VISIBLE);
             imageView_logo.setVisibility(INVISIBLE);
         }
@@ -107,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 txt_score.setText(" "+Constants.score);
 
                 if(Constants.IsDead){
+                    btn_retry.setVisibility(View.VISIBLE);
                     btn_shop.setVisibility(View.VISIBLE);
                 }
 
@@ -172,13 +177,18 @@ public class MainActivity extends AppCompatActivity {
         btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(MainActivity.this,ShopActivity.class);
-                startActivity(intent);*/
+                 Intent intent = new Intent(MainActivity.this,ShopActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 Constants.Restart=true;
                 Constants.score=0;
                 recreate();
                 //w tymi miejscu trzeba dopisać schowanie punkotw
-
             }
         });
         btn_info.setOnClickListener(new View.OnClickListener() {
