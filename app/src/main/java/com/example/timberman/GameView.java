@@ -149,17 +149,18 @@ public class GameView extends View {
 
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
-           }
+            }
             woodcutter.draw(canvas);
-
 
         }
         if(Constants.IsDead){ //todo tu bedzie else do zrestartowania gry
+            Constants.score=0;
             woodcutter.smierc();
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
             }
             woodcutter.draw(canvas);
+
         }
         handler.postDelayed(runnable, 10);
     }

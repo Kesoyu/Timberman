@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        TextView txt_score = (TextView) findViewById(R.id.txt_score); txt_score.setText(" "+Constants.bestScore); // linia do sprawdzania czy wynik dobrze sie zapisuje
-
+        TextView txt_score = (TextView) findViewById(R.id.txt_score); // linia do sprawdzania czy wynik dobrze sie zapisuje
         imageView_logo=findViewById(R.id.imageView_logo);
         btn_pause=findViewById(R.id.btn_pause);
         btn_start=findViewById(R.id.btn_start);
@@ -72,11 +71,12 @@ public class MainActivity extends AppCompatActivity {
         gv.setPb(((ProgressBar) findViewById(R.id.idpbbar)));
 
 
-        if(Constants.Restart==false) {
+        if(!Constants.Restart) {
             btn_start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     gv.setStart(true);
+                    TextView txt_best_score = (TextView) findViewById(R.id.txt_best_score); txt_best_score.setText(" "+Constants.bestScore); // linia do sprawdzania czy wynik dobrze sie zapisuje
 
                     //w tymi miejscu trzeba dopisać schowanie punkotw
 
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             gv.setStart(true);
+            TextView txt_best_score = (TextView) findViewById(R.id.txt_best_score); txt_best_score.setText(" "+Constants.bestScore); // linia do sprawdzania czy wynik dobrze sie zapisuje
 
             //w tymi miejscu trzeba dopisać schowanie punkotw
 
@@ -109,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView txt_score = (TextView) findViewById(R.id.txt_score);
                 txt_score.setText(" "+Constants.score);
-
+                TextView txt_best_score = (TextView) findViewById(R.id.txt_best_score); txt_best_score.setText(" "+Constants.bestScore);
+                if(Constants.score>Constants.bestScore){ saveData(); }
                 if(Constants.IsDead){
                     btn_retry.setVisibility(View.VISIBLE);
                     btn_shop.setVisibility(View.VISIBLE);
@@ -177,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         btn_shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Constants.score>Constants.bestScore){ saveData(); }
                  Intent intent = new Intent(MainActivity.this,ShopActivity.class);
                 startActivity(intent);
             }
@@ -186,9 +189,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Constants.Restart=true;
-                Constants.bestScore=Constants.score;
+                if(Constants.score>Constants.bestScore){ saveData(); }
                 Constants.score=0;
-
                 recreate();
 
                 //w tymi miejscu trzeba dopisać schowanie punkotw
