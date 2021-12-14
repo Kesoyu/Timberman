@@ -4,14 +4,19 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class Stick extends BaseObject{
-    private  int idCurrentBitmap;
-    public enum Kolor {
-        LEWO, PRAWO, SRODEK;
-    }
     private Kolor kolor;
+
+    public enum Kolor {
+        LEWO,
+        PRAWO,
+        SRODEK
+    }
+
+
     public Stick(float x, float y, int width, int height) {
         super(x, y, width, height);
     }
+
     public void draw(Canvas canvas){
         canvas.drawBitmap(this.getBm(),this.x,this.y,null);
     }
