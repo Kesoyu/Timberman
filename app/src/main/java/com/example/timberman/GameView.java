@@ -144,15 +144,10 @@ public class GameView extends View {
 
     public void draw(Canvas canvas){
         super.draw(canvas);
-        if(start)
-        {
-
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
             }
             woodcutter.draw(canvas);
-
-        }
         if(Constants.IsDead){ //todo tu bedzie else do zrestartowania gry
             Constants.score=0;
             woodcutter.smierc();
