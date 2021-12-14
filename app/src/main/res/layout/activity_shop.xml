@@ -11,19 +11,50 @@
         android:id="@+id/btn_shop_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/Avatar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/Avatar3"
+        app:layout_constraintEnd_toEndOf="@+id/Avatar3"
+        app:layout_constraintStart_toStartOf="@+id/Avatar3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/info" />
+
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/Avatar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/Avatar4"
+        app:layout_constraintEnd_toEndOf="@+id/Avatar4"
+        app:layout_constraintStart_toStartOf="@+id/Avatar4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/info" />
+
+    <ImageView
+        android:id="@+id/Avatar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btn_shop_back"
+        app:layout_constraintEnd_toEndOf="@+id/btn_shop_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/info" />
+
+    <ImageView
+        android:id="@+id/Avatar4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btn_shop_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_shop_back"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/info" />
 </androidx.constraintlayout.widget.ConstraintLayout>

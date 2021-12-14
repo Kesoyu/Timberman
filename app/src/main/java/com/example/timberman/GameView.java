@@ -108,14 +108,27 @@ public class GameView extends View {
         woodcutter.setY(1300*Constants.SCREEN_HEIGHT/1920);
         ArrayList<Bitmap> arrBms = new ArrayList<>();
         Log.d("MainActivity","WoodcuterY"+woodcutter.getY());
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left1));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left2));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left3));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right1));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right2));
-        arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right3));
+
+        if(Constants.Avatar==0) {
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left2));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.left3));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right2));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right3));
+        }
+        else if(Constants.Avatar==1){
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.background));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
+        }
+
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
         woodcutter.setArrBms(arrBms);
+
     }
 
     public void draw(Canvas canvas){
@@ -240,5 +253,8 @@ public class GameView extends View {
 
     public void setStart(boolean start) {
         this.start = start;
+    }
+    public boolean getStart() {
+       return this.start;
     }
 }

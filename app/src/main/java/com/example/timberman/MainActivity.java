@@ -166,10 +166,18 @@ public class MainActivity extends AppCompatActivity {
         });
         btn_info.setOnClickListener(view -> Toast.makeText(MainActivity.this, R.string.info_string, Toast.LENGTH_LONG).show());
         btn_pause.setOnClickListener(view -> {
-            Toast.makeText(MainActivity.this,R.string.pause_string, Toast.LENGTH_LONG).show();
-            btn_shop.setVisibility(View.VISIBLE);
-
-
+            if(!Constants.IsDead){
+                if(gv.getStart()) {
+                    gv.setStart(false);
+                    btn_shop.setVisibility(View.VISIBLE);
+                    btn_retry.setVisibility(View.VISIBLE);
+                }
+                else {
+                    gv.setStart(true);
+                    btn_shop.setVisibility(INVISIBLE);
+                    btn_retry.setVisibility(INVISIBLE);
+                }
+            }
         });
         btn_select.setOnClickListener(view -> {
             btn_start.setVisibility(View.VISIBLE);
