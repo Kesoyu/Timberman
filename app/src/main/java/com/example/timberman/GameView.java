@@ -59,24 +59,24 @@ public class GameView extends View {
     public void initSticks() {
 
         //pierwszy element
-        this.arrSicks.add(new Stick(478,1620,526,300));
+        this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),(1300*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
         arrSicks.get(0).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
         arrSicks.get(0).setKolor(Stick.Kolor.SRODEK);
 
 
         int sumbranch = 8;
-        for (int i = 1; i < sumbranch; i++){
+        for (int i = 1; i < 8; i++){
 
                 los = new Random().nextInt(2);
 
             if (los == 0){
                 if (!changeSide) {
-                    this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size() - 1).getY() - 300, 1050, 300));
+                    this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (843*Constants.SCREEN_HEIGHT/1920), (240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                     arrSicks.get(i).setKolor(Stick.Kolor.LEWO);
                 }
                 else{
-                    this.arrSicks.add(new Stick(478, arrSicks.get(arrSicks.size() - 1).getY() - 300, 526, 300));
+                    this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (395*Constants.SCREEN_WIDTH/1080), (240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                     arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
                     changeSide=false;
@@ -84,12 +84,12 @@ public class GameView extends View {
             }
             else{
                 if (changeSide) {
-                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
+                    this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(843*Constants.SCREEN_HEIGHT/1920),(240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                     arrSicks.get(i).setKolor(Stick.Kolor.PRAWO);
                 }
                 else{
-                    this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,526,300));
+                    this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                     arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
                     changeSide=true;
@@ -136,6 +136,7 @@ public class GameView extends View {
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
             }
+        canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.podstawadrzewauseless),(478*Constants.SCREEN_WIDTH/1080),(100*Constants.SCREEN_HEIGHT/1920), true),(322*Constants.SCREEN_WIDTH/1080),(1540*Constants.SCREEN_HEIGHT/1920), null);
             woodcutter.draw(canvas);
         if(Constants.IsDead){ //todo tu bedzie else do zrestartowania gry
             Constants.score=0;
@@ -152,7 +153,7 @@ public class GameView extends View {
     private void EdoTensei(){
 
         //przesuwanie drzewa w dol
-        for(int i = 0;i<arrSicks.size(); i++) { arrSicks.get(i).setY(arrSicks.get(i).getY() + 300); }
+        for(int i = 0;i<arrSicks.size(); i++) { arrSicks.get(i).setY(arrSicks.get(i).getY() + (240*Constants.SCREEN_HEIGHT/1920)); }
 
         //usuwanie dolngo elementu
         arrSicks.remove(0);
@@ -163,12 +164,12 @@ public class GameView extends View {
 
         if (los == 0) {
             if (!changeSide) {
-                this.arrSicks.add(new Stick(-47, arrSicks.get(arrSicks.size()-1).getY() - 300, 1050, 300));
+                this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (843*Constants.SCREEN_HEIGHT/1920), (240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.LEWO);
             }
             else{
-                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
                 changeSide=false;
@@ -176,12 +177,12 @@ public class GameView extends View {
         }
         else {
             if (changeSide) {
-                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size() - 1).getY() - 300,1050,300));
+                this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(843*Constants.SCREEN_HEIGHT/1920),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.PRAWO);
             }
             else{
-                this.arrSicks.add(new Stick(478,arrSicks.get(arrSicks.size()-1).getY() - 300,526,300));
+                this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
                 arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
                 changeSide=true;
@@ -209,7 +210,7 @@ public class GameView extends View {
                         start = false;
 
                     }
-                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
+                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + (240*Constants.SCREEN_HEIGHT/1920) && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
                         EdoTensei();
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
@@ -233,7 +234,7 @@ public class GameView extends View {
                         Constants.IsDead=true;
                         start = false;
                     }
-                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + 300 && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
+                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + (240*Constants.SCREEN_HEIGHT/1920) && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
                         EdoTensei();
                         Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
                         //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek) tu na dole jest to co probwale ja :D
