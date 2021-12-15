@@ -44,8 +44,9 @@ public class Woodcutter extends BaseObject {
         else if(strona==2){
             this.x = 700*Constants.SCREEN_WIDTH/1080;
 
-            idCurrentBitmap = 0;
-            handler.postDelayed(() -> idCurrentBitmap = 3,100);
+            idCurrentBitmap = 3;
+            handler.postDelayed(() -> idCurrentBitmap = 4,100);
+            idCurrentBitmap = 5;
         }
     }
 

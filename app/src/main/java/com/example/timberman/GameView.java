@@ -118,12 +118,12 @@ public class GameView extends View {
             arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.right3));
         }
         else if(Constants.Avatar==1){
-            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.background));
-            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
-            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
-            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
-            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
-            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.play));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.popcat1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.popcat1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.popcat2));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.popcatright1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.popcatright1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.popcatright2));
         }
 
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
