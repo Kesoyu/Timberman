@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     public ImageView imageView_logo,imageView_game_over;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry;
     private GameView gv;
-
 
     @SuppressLint({"WrongViewCast", "ClickableViewAccessibility"})
     @Override

@@ -11,6 +11,20 @@ public class Woodcutter extends BaseObject {
     private ArrayList<Bitmap> arrBms = new ArrayList<>();
     private int count, vHit, idCurrentBitmap;
     final Handler handler = new Handler(Looper.getMainLooper());
+    public AktualnaStrona aktualnaStrona;
+
+    public enum AktualnaStrona {
+        LEWO,
+        PRAWO
+    }
+
+    public AktualnaStrona getAktualnaStrona() {
+        return aktualnaStrona;
+    }
+
+    public void setStrona(AktualnaStrona aktualnaStrona) {
+        this.aktualnaStrona = aktualnaStrona;
+    }
 
     public Woodcutter(){
     this.count = 0;
@@ -40,6 +54,7 @@ public class Woodcutter extends BaseObject {
             idCurrentBitmap = 0;
             handler.postDelayed(() -> idCurrentBitmap = 1,100);
             idCurrentBitmap = 2;
+            this.aktualnaStrona = AktualnaStrona.LEWO;
         }
         else if(strona==2){
             this.x = 700*Constants.SCREEN_WIDTH/1080;
@@ -47,6 +62,7 @@ public class Woodcutter extends BaseObject {
             idCurrentBitmap = 3;
             handler.postDelayed(() -> idCurrentBitmap = 4,100);
             idCurrentBitmap = 5;
+            this.aktualnaStrona = AktualnaStrona.PRAWO;
         }
     }
 

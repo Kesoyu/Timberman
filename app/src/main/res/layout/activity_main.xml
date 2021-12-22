@@ -83,10 +83,15 @@
         android:layout_height="match_parent" />
 
     <ProgressBar
+        android:id="@+id/idpbbar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:id="@+id/idpbbar"/>
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:background="#FF5722"
+        android:progressTint="#FFEB3B"
+        />
 
     <TextView
         android:id="@+id/txt_score"

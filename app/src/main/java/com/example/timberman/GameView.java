@@ -18,7 +18,7 @@ public class GameView extends View {
     private final android.os.Handler handler;
     private final Runnable runnable;
     private Woodcutter woodcutter;
-
+    private int fajnaliczba;
     private final ArrayList<Stick>arrSicks=new ArrayList<>();
 
     private int los;
@@ -47,11 +47,13 @@ public class GameView extends View {
         runnable = () -> {
             invalidate();
             if(pb!=null){
-                pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
+
+
                 progressCounter-=1;
                 if (progressCounter==0){
-                    progressCounter=100;
+                    progressCounter=1;
                 }
+                pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
             }
         };
     }
@@ -61,7 +63,7 @@ public class GameView extends View {
         //pierwszy element
         this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),(1300*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
         arrSicks.get(0).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-        arrSicks.get(0).setKolor(Stick.Kolor.SRODEK);
+        arrSicks.get(0).setStrona(Stick.Strona.SRODEK);
 
 
         int sumbranch = 8;
@@ -73,12 +75,12 @@ public class GameView extends View {
                 if (!changeSide) {
                     this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (843*Constants.SCREEN_HEIGHT/1920), (240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
-                    arrSicks.get(i).setKolor(Stick.Kolor.LEWO);
+                    arrSicks.get(i).setStrona(Stick.Strona.LEWO);
                 }
                 else{
                     this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (395*Constants.SCREEN_WIDTH/1080), (240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                    arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
+                    arrSicks.get(i).setStrona(Stick.Strona.SRODEK);
                     changeSide=false;
                 }
             }
@@ -86,12 +88,12 @@ public class GameView extends View {
                 if (changeSide) {
                     this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(843*Constants.SCREEN_HEIGHT/1920),(240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
-                    arrSicks.get(i).setKolor(Stick.Kolor.PRAWO);
+                    arrSicks.get(i).setStrona(Stick.Strona.PRAWO);
                 }
                 else{
                     this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                    arrSicks.get(i).setKolor(Stick.Kolor.SRODEK);
+                    arrSicks.get(i).setStrona(Stick.Strona.SRODEK);
                     changeSide=true;
                 }
             }
@@ -128,7 +130,7 @@ public class GameView extends View {
 
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
         woodcutter.setArrBms(arrBms);
-
+        woodcutter.setStrona(Woodcutter.AktualnaStrona.LEWO);//Defualtowo aktualna strona lewo
     }
 
     public void draw(Canvas canvas){
@@ -166,12 +168,12 @@ public class GameView extends View {
             if (!changeSide) {
                 this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (843*Constants.SCREEN_HEIGHT/1920), (240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
-                arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.LEWO);
+                arrSicks.get(arrSicks.size()-1).setStrona(Stick.Strona.LEWO);
             }
             else{
                 this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
+                arrSicks.get(arrSicks.size()-1).setStrona(Stick.Strona.SRODEK);
                 changeSide=false;
             }
         }
@@ -179,12 +181,12 @@ public class GameView extends View {
             if (changeSide) {
                 this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(843*Constants.SCREEN_HEIGHT/1920),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
-                arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.PRAWO);
+                arrSicks.get(arrSicks.size()-1).setStrona(Stick.Strona.PRAWO);
             }
             else{
                 this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(395*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.srodek));
-                arrSicks.get(arrSicks.size()-1).setKolor(Stick.Kolor.SRODEK);
+                arrSicks.get(arrSicks.size()-1).setStrona(Stick.Strona.SRODEK);
                 changeSide=true;
             }
         }
@@ -198,26 +200,33 @@ public class GameView extends View {
             if (start) {
 
                 float xValue = event.getX();
+                if(progressCounter<90){
+                    progressCounter=progressCounter+10;
+                }
+                else{
+                    progressCounter=100;
+                }
 
                 if (xValue <= leftPersentage) {
                     Constants.click=1;
                     Constants.clickL++;
                     woodcutter.onClick(1);
-                    if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.LEWO) {
+                    if (arrSicks.get(0).getStrona() == Stick.Strona.LEWO) {
                         Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
-                        //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        Constants.IsDead=true;
-                        start = false;
-
+                        if(woodcutter.getAktualnaStrona() == Woodcutter.AktualnaStrona.LEWO) {
+                            //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
+                            Constants.IsDead = true;
+                            start = false;
+                        }
                     }
-                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + (240*Constants.SCREEN_HEIGHT/1920) && arrSicks.get(1).getKolor() == Stick.Kolor.LEWO) {
-                        EdoTensei();
-                        Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
-                        //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        Constants.IsDead=true;
-                        start = false;
-
-
+                    else if (arrSicks.get(1).getStrona() == Stick.Strona.LEWO) {
+                        if(woodcutter.getAktualnaStrona() == Woodcutter.AktualnaStrona.LEWO) {
+                            EdoTensei();
+                            Log.d("OnTouchEventDead-Left", "Gameover - Leftside");
+                            //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
+                            Constants.IsDead = true;
+                            start = false;
+                        }
                     }
                     else {
                         Constants.score++;
@@ -228,19 +237,23 @@ public class GameView extends View {
                     Constants.click=2;
                     Constants.clickR++;
                     woodcutter.onClick(2);
-                    if (woodcutter.getY() + 1 == arrSicks.get(0).getY() && arrSicks.get(0).getKolor() == Stick.Kolor.PRAWO) {
-                        Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
-                        //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
-                        Constants.IsDead=true;
-                        start = false;
+                    if (arrSicks.get(0).getStrona() == Stick.Strona.PRAWO) {
+                        if(woodcutter.getAktualnaStrona()== Woodcutter.AktualnaStrona.PRAWO) {
+                            Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
+                            //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek)
+                            Constants.IsDead = true;
+                            start = false;
+                        }
                     }
-                    else if (woodcutter.getY() + 1 == arrSicks.get(1).getY() + (240*Constants.SCREEN_HEIGHT/1920) && arrSicks.get(1).getKolor() == Stick.Kolor.PRAWO) {
-                        EdoTensei();
-                        Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
-                        //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek) tu na dole jest to co probwale ja :D
-                        woodcutter.setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
-                        Constants.IsDead=true;
-                        start = false;
+                    else if (arrSicks.get(1).getStrona() == Stick.Strona.PRAWO) {
+                        if(woodcutter.getAktualnaStrona()== Woodcutter.AktualnaStrona.PRAWO) {
+                            EdoTensei();
+                            Log.d("OnTouchEventDead-Right", "Gameover - Rightside");
+                            //TODO stawianie nagrobka - probowalem ale nie orietuje sie w tym jak jest jakas tablica do przekazania no kurwa nie dziala(podmienienie woodcuter-drawble na nagrobek) tu na dole jest to co probwale ja :D
+                            woodcutter.setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
+                            Constants.IsDead = true;
+                            start = false;
+                        }
                     }
                     else {
                         Constants.score++;

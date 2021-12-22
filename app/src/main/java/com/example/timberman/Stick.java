@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class Stick extends BaseObject{
-    private Kolor kolor;
+    private Strona strona;
 
-    public enum Kolor {
+    public enum Strona {
         LEWO,
         PRAWO,
         SRODEK
@@ -26,12 +26,12 @@ public class Stick extends BaseObject{
       this.bm =  Bitmap.createScaledBitmap(Bm,this.width,this.height, true);
     }
 
-    public Kolor getKolor() {
-        return kolor;
+    public Strona getStrona() {
+        return strona;
     }
 
-    public void setKolor(Kolor kolor) {
-        this.kolor = kolor;
+    public void setStrona(Strona strona) {
+        this.strona = strona;
     }
 }
 
