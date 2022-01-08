@@ -210,6 +210,30 @@
             android:textSize="50dp"
             android:visibility="invisible" />
 
+        <ImageButton
+            android:id="@+id/btn_musicon"
+            android:layout_width="61dp"
+            android:layout_height="53dp"
+            android:layout_above="@+id/txt_game_over"
+            android:layout_alignEnd="@+id/txt_game_over"
+            android:layout_marginTop="55dp"
+            
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="-1dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/music" />
+
+        <ImageButton
+            android:id="@+id/btn_musicoff"
+            android:layout_width="61dp"
+            android:visibility="invisible"
+            android:layout_height="53dp"
+            android:layout_below="@+id/txt_game_over"
+            android:layout_alignEnd="@+id/txt_game_over"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="100dp"
+            app:srcCompat="@drawable/no_music" />
+
 
     </RelativeLayout>
 

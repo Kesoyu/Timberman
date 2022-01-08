@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -23,7 +24,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public ImageView imageView_logo,imageView_game_over;
-    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry;
+    public MediaPlayer player;
+    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon,btn_musicoff;
     private GameView gv;
 
     @SuppressLint({"WrongViewCast", "ClickableViewAccessibility"})
@@ -43,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
+        btn_musicoff=findViewById(R.id.btn_musicoff);
+        btn_musicon=findViewById(R.id.btn_musicon);
         imageView_logo=findViewById(R.id.imageView_logo);
         btn_pause=findViewById(R.id.btn_pause);
         btn_start=findViewById(R.id.btn_start);
@@ -171,11 +174,15 @@ public class MainActivity extends AppCompatActivity {
                     gv.setStart(false);
                     btn_shop.setVisibility(View.VISIBLE);
                     btn_retry.setVisibility(View.VISIBLE);
+                    btn_musicon.setVisibility(View.VISIBLE);
+                    btn_musicoff.setVisibility(View.VISIBLE);
                 }
                 else {
                     gv.setStart(true);
                     btn_shop.setVisibility(INVISIBLE);
                     btn_retry.setVisibility(INVISIBLE);
+                    btn_musicon.setVisibility(INVISIBLE);
+                    btn_musicoff.setVisibility(INVISIBLE);
                 }
             }
         });
@@ -186,7 +193,37 @@ public class MainActivity extends AppCompatActivity {
             btn_select.setVisibility(INVISIBLE);
         });
 
+
+
     }
+//    public void play(View view){
+//        if(player==null) {
+//            player=MediaPlayer.create(this,R.raw.song1);
+//            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mediaPlayer) {
+//                    stopPlayer();
+//                }
+//            });
+//        }
+//        player.start();
+//    }
+//
+//    public  void stop( View view){
+//        if(player!=null) {
+//            player.pause();
+//        }
+//    }
+//
+//
+//    private void stopPlayer(){
+//        if(player!=null){
+//            player.release();
+//            player=null;
+//
+//        }
+//    }
+
 
     // zapis do pliku najlepszego wyniku gracza
     @Override
