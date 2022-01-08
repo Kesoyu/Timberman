@@ -11,9 +11,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class ShopActivity extends AppCompatActivity {
-    public ImageButton Avatar1;
+    public ImageButton Avatar1, btn_shop_back;
     public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2;
-    public Button btn_shop_back,btn_next,btn_previous;
+    public Button btn_next,btn_previous;
     public int avatar;
 
     @Override
