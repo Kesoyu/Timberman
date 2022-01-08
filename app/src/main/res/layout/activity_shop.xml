@@ -8,10 +8,11 @@
     tools:context=".ShopActivity">
 
 
+
     <ImageButton
         android:id="@+id/btn_shop_back"
-        android:layout_width="74dp"
-        android:layout_height="54dp"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
