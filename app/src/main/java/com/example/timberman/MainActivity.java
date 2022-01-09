@@ -22,9 +22,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public ImageView imageView_logo,imageView_game_over;
-    public MediaPlayer player;
+    MediaPlayer player;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon,btn_musicoff;
     private GameView gv;
 
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);// ustawia full screen
         DisplayMetrics dm = new DisplayMetrics();// wyświetlacz w telefonie
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+
 
         //wczytywanie danych z pliku
         loadData();
@@ -57,6 +58,19 @@ public class MainActivity extends AppCompatActivity {
         btn_select=findViewById(R.id.btn_select);
         gv=findViewById(R.id.gv);
         gv.setPb(findViewById(R.id.idpbbar));
+        if(player==null) {
+            player = MediaPlayer.create(this, R.raw.dx);
+            player.setLooping(true);
+            player.seekTo(0);
+            player.setVolume(0.5f, 0.5f);
+
+        }
+        player.start();
+
+
+
+
+
 
 
         if(!Constants.Restart) {
@@ -192,37 +206,26 @@ public class MainActivity extends AppCompatActivity {
             btn_shop.setVisibility(View.VISIBLE);
             btn_select.setVisibility(INVISIBLE);
         });
+        btn_musicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                player.start();
+            }
+        });
+        btn_musicoff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                player.pause();
+            }
+        });
+
+
+
+
 
 
 
     }
-//    public void play(View view){
-//        if(player==null) {
-//            player=MediaPlayer.create(this,R.raw.song1);
-//            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//                @Override
-//                public void onCompletion(MediaPlayer mediaPlayer) {
-//                    stopPlayer();
-//                }
-//            });
-//        }
-//        player.start();
-//    }
-//
-//    public  void stop( View view){
-//        if(player!=null) {
-//            player.pause();
-//        }
-//    }
-//
-//
-//    private void stopPlayer(){
-//        if(player!=null){
-//            player.release();
-//            player=null;
-//
-//        }
-//    }
 
 
     // zapis do pliku najlepszego wyniku gracza
@@ -240,5 +243,21 @@ public class MainActivity extends AppCompatActivity {
     private  void loadData() {
         SharedPreferences prefs = getSharedPreferences("pref", MODE_PRIVATE);
         Constants.bestScore = prefs.getInt("best_score", 0);
+    }
+    //muzyka
+    public void onClick(View view) {
+        if(view.getId()==R.id.stop){
+            if(player.isPlaying()){
+                //gra
+                player.pause();
+                //stop_play.setBackgroundResource(R.drawable.ic_play);
+                //we ogarnijcie grafiki pod przycisk od pauzy i play
+            }
+            else{
+                player.start();
+                //stop_play.setBackgroundResource(R.drawable.ic_pause);
+                //to samo co wyżej ale to kurwa zrób
+            }
+        }
     }
 }
