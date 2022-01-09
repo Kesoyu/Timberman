@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer player;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon,btn_musicoff;
     private GameView gv;
+    public TextView txt_best_score;
+    public TextView txt_score;
+    public ProgressBar pb;
 
     @SuppressLint({"WrongViewCast", "ClickableViewAccessibility"})
     @Override
@@ -53,11 +56,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_start=findViewById(R.id.btn_start);
         btn_info=findViewById(R.id.btn_info);
         btn_shop=findViewById(R.id.btn_shop);
-
+        txt_best_score = findViewById(R.id.txt_best_score);
+        txt_score = findViewById(R.id.txt_score);
         btn_retry=findViewById(R.id.btn_retry);
         btn_select=findViewById(R.id.btn_select);
         gv=findViewById(R.id.gv);
-        gv.setPb(findViewById(R.id.idpbbar));
+        pb = findViewById(R.id.idpbbar);
+        gv.setPb(pb);
+        gv.initBtn(btn_shop,btn_retry,btn_musicon,btn_musicoff);
         if(player==null) {
             player = MediaPlayer.create(this, R.raw.dx);
             player.setLooping(true);
@@ -76,28 +82,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(!Constants.Restart) {
             btn_start.setOnClickListener(view -> {
                 gv.setStart(true);
-                TextView txt_best_score = findViewById(R.id.txt_best_score); txt_best_score.setText(String.valueOf(Constants.bestScore)); // linia do sprawdzania czy wynik dobrze sie zapisuje
+                gv.pbstart=true;
+                gv.progressCounter = 100;
+//                pbReset();
+                txt_best_score.setText(String.valueOf(Constants.bestScore)); // linia do sprawdzania czy wynik dobrze sie zapisuje
 
                 //w tymi miejscu trzeba dopisać schowanie punkotw
 
                 btn_start.setVisibility(INVISIBLE);
+                pb.setVisibility(View.VISIBLE);
                 btn_retry.setVisibility(INVISIBLE);
                 btn_info.setVisibility(INVISIBLE);
                 btn_shop.setVisibility(INVISIBLE);
+                txt_best_score.setVisibility(View.VISIBLE);
+                txt_score.setVisibility(View.VISIBLE);
                 btn_pause.setVisibility(View.VISIBLE);
                 imageView_logo.setVisibility(INVISIBLE);
             });
         }
         else{
             gv.setStart(true);
-            TextView txt_best_score = findViewById(R.id.txt_best_score); txt_best_score.setText(String.valueOf(Constants.bestScore)); // linia do sprawdzania czy wynik dobrze sie zapisuje
+            gv.pbstart=true;
+            gv.progressCounter = 100;
+//            pbReset();
+            txt_best_score.setText(String.valueOf(Constants.bestScore)); // linia do sprawdzania czy wynik dobrze sie zapisuje
 
             //w tymi miejscu trzeba dopisać schowanie punkotw
-
+            pb.setVisibility(View.VISIBLE);
             btn_start.setVisibility(INVISIBLE);
             btn_info.setVisibility(INVISIBLE);
             btn_shop.setVisibility(INVISIBLE);
             btn_retry.setVisibility(INVISIBLE);
+            txt_best_score.setVisibility(View.VISIBLE);
+            txt_score.setVisibility(View.VISIBLE);
             btn_pause.setVisibility(View.VISIBLE);
             imageView_logo.setVisibility(INVISIBLE);
         }
@@ -105,13 +122,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Animacja
         gv.setOnTouchListener((view, motionEvent) -> {
 
+
             TextView txt_score = findViewById(R.id.txt_score);
             txt_score.setText(String.valueOf(Constants.score));
             TextView txt_best_score = findViewById(R.id.txt_best_score); txt_best_score.setText(String.valueOf(Constants.bestScore));
             if(Constants.score>Constants.bestScore){ saveData(); }
             if(Constants.IsDead){
+                gv.pbstart=false;
                 btn_retry.setVisibility(View.VISIBLE);
                 btn_shop.setVisibility(View.VISIBLE);
+                pb.setVisibility(INVISIBLE);
             }
 
             if (Constants.click == 2 && Constants.clickR!=0) {

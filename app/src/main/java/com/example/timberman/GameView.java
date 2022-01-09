@@ -7,8 +7,11 @@ import android.graphics.Canvas;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.MonthDisplayHelper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
@@ -20,17 +23,23 @@ public class GameView extends View {
     private Woodcutter woodcutter;
     private int fajnaliczba;
     private final ArrayList<Stick>arrSicks=new ArrayList<>();
-
+    public boolean pbstart = false;
     private int los;
     private final float leftPersentage;
     private boolean changeSide=false;
-
-    private ProgressBar pb;
+    public ProgressBar pb;
+    public int progressCounter = 100;
+    public MotionEvent skrt;
+    public ImageButton btn_shop,btn_retry,btn_musicon,btn_musicoff;
+    public void initBtn(ImageButton shop, ImageButton retry, ImageButton musicicon,ImageButton musicoff){
+        this.btn_shop = shop;
+        this.btn_retry = retry;
+        this.btn_musicon = musicicon;
+        this.btn_musicoff = musicoff;
+    }
     public void setPb(ProgressBar pb) {
         this.pb = pb;
     }
-    private int progressCounter=100;
-
     private boolean start;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -47,13 +56,22 @@ public class GameView extends View {
         runnable = () -> {
             invalidate();
             if(pb!=null){
-
-
+                if(pbstart==true)
                 progressCounter-=1;
-                if (progressCounter==0){
-                    progressCounter=1;
-                }
+                int dodatek=0;
+                dodatek = (int)Constants.score/10;
+                progressCounter-=dodatek;
                 pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
+                Log.d("pb-status",""+progressCounter);
+                if(progressCounter==0){
+                    Constants.IsDead=true;
+                    woodcutter.smierc();
+                    start=false;
+                    btn_shop.setVisibility(View.VISIBLE);
+                    btn_retry.setVisibility(View.VISIBLE);
+                    btn_musicon.setVisibility(View.VISIBLE);
+                    btn_musicoff.setVisibility(View.VISIBLE);
+                }
             }
         };
     }
@@ -198,14 +216,14 @@ public class GameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             if (start) {
-
-                float xValue = event.getX();
                 if(progressCounter<90){
                     progressCounter=progressCounter+10;
                 }
                 else{
                     progressCounter=100;
                 }
+                float xValue = event.getX();
+
 
                 if (xValue <= leftPersentage) {
                     Constants.click=1;
