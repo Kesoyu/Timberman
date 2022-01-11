@@ -12,4 +12,5 @@ public class Constants {
     public static int Avatar=0;
     public static boolean IsDead=false;
     public static boolean Restart=false;
+    public static boolean Musick=true;
 }

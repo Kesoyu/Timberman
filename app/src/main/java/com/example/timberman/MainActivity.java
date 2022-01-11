@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public ImageView imageView_logo,imageView_game_over;
-    MediaPlayer player;
+    MediaPlayer player,beepsound;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon,btn_musicoff;
     private GameView gv;
     public TextView txt_best_score;
@@ -64,21 +64,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pb = findViewById(R.id.idpbbar);
         gv.setPb(pb);
         gv.initBtn(btn_shop,btn_retry,btn_musicon,btn_musicoff);
-        if(player==null) {
-            player = MediaPlayer.create(this, R.raw.dx);
+        //muzyka w tle i drzdewo smierc
+        if(Constants.Musick==true) {
+            player = MediaPlayer.create(this, R.raw.song2);
             player.setLooping(true);
             player.seekTo(0);
-            player.setVolume(0.5f, 0.5f);
-
+            player.setVolume(0.2f, 0.2f);
+            player.start();
         }
-        player.start();
+        else
+            player=null;
+        if(Constants.Avatar==1 || Constants.Avatar==0 || Constants.Avatar==2)
+        {
+            beepsound=MediaPlayer.create(this,R.raw.bumpsound);
+            beepsound.seekTo(0);
+            beepsound.setVolume(0.5f, 0.5f);
+        }
+      //  beepsound.start();
+
+        //----------------------
 
 
 
 
-
-
-
+//restart
         if(!Constants.Restart) {
             btn_start.setOnClickListener(view -> {
                 gv.setStart(true);
@@ -122,19 +131,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Animacja
         gv.setOnTouchListener((view, motionEvent) -> {
 
-
             TextView txt_score = findViewById(R.id.txt_score);
             txt_score.setText(String.valueOf(Constants.score));
             TextView txt_best_score = findViewById(R.id.txt_best_score); txt_best_score.setText(String.valueOf(Constants.bestScore));
             if(Constants.score>Constants.bestScore){ saveData(); }
             if(Constants.IsDead){
+               if(Constants.Musick==true) {player.pause();}
+                //sprawdzanie umierania
                 gv.pbstart=false;
+
                 btn_retry.setVisibility(View.VISIBLE);
                 btn_shop.setVisibility(View.VISIBLE);
                 pb.setVisibility(INVISIBLE);
             }
 
             if (Constants.click == 2 && Constants.clickR!=0) {
+                beepsound.start();
                 switch (Constants.clickR){
                     case 1:
                         ImageView AnimatedTree = findViewById(R.id.animation);
@@ -160,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Constants.click = 0;
             }
             else if (Constants.click == 1 && Constants.clickL!=0) {
+                beepsound.start();
                 switch (Constants.clickL){
                     case 1:
                         ImageView AnimatedTree4 = findViewById(R.id.animation4);
@@ -229,13 +242,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_musicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                player = MediaPlayer.create(MainActivity.this, R.raw.song2);
+                player.setVolume(0.2f, 0.2f);
+                player.seekTo(0);
                 player.start();
+                Constants.Musick=true;
+
             }
         });
         btn_musicoff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                player.pause();
+                 Constants.Musick=false;
+                player.stop();
             }
         });
 
@@ -268,15 +287,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId()==R.id.stop){
             if(player.isPlaying()){
-                //gra
                 player.pause();
-                //stop_play.setBackgroundResource(R.drawable.ic_play);
-                //we ogarnijcie grafiki pod przycisk od pauzy i play
             }
             else{
                 player.start();
-                //stop_play.setBackgroundResource(R.drawable.ic_pause);
-                //to samo co wyżej ale to kurwa zrób
             }
         }
     }

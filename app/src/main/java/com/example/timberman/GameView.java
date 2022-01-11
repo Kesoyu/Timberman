@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class GameView extends View {
     public ProgressBar pb;
     public int progressCounter = 100;
     public MotionEvent skrt;
+
     public ImageButton btn_shop,btn_retry,btn_musicon,btn_musicoff;
     public void initBtn(ImageButton shop, ImageButton retry, ImageButton musicicon,ImageButton musicoff){
         this.btn_shop = shop;
@@ -46,6 +48,7 @@ public class GameView extends View {
         super(context, attrs);
         start = false;
         Constants.IsDead = false;
+
 
         initWoodCutter();
         initSticks();
