@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 public class ShopActivity extends AppCompatActivity {
     public ImageButton Avatar1, btn_shop_back;
-    public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2;
+    public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2,omniman3;
     public Button btn_next,btn_previous;
     public int avatar;
 
@@ -32,6 +32,7 @@ public class ShopActivity extends AppCompatActivity {
         btn_previous=findViewById(R.id.btn_previous);
         woodercutter1=findViewById(R.id.woodercutter1);
         popcat2=findViewById(R.id.popcat2);
+        omniman3=findViewById(R.id.omniman3);
         avatar=Constants.Avatar;
         WhoChose(avatar);
 
@@ -40,7 +41,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 avatar++;
-                if(avatar>1)
+                if(avatar>2)
                     avatar=0;
                 WhoChose(avatar);
             }
@@ -51,7 +52,7 @@ public class ShopActivity extends AppCompatActivity {
             public void onClick(View view) {
                 avatar--;
                 if(avatar==-1)
-                    avatar=1;
+                    avatar=2;
                 WhoChose(avatar);
             }
         });
@@ -74,13 +75,22 @@ public class ShopActivity extends AppCompatActivity {
     void WhoChose(int avatar)
     {
         if(avatar==0) {
+            omniman3.setVisibility(View.INVISIBLE);
             woodercutter1.setVisibility(View.VISIBLE);
             popcat2.setVisibility(View.INVISIBLE);
+
         }
 
         else if (avatar==1) {
-            popcat2.setVisibility(View.VISIBLE);
             woodercutter1.setVisibility(View.INVISIBLE);
+            popcat2.setVisibility(View.VISIBLE);
+
+            omniman3.setVisibility(View.INVISIBLE);
+        }
+        else if (avatar==2) {
+           popcat2.setVisibility(View.INVISIBLE);
+           woodercutter1.setVisibility(View.INVISIBLE);
+          omniman3.setVisibility(View.VISIBLE);
         }
     }
 }

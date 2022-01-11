@@ -39,6 +39,16 @@
         app:layout_constraintStart_toStartOf="parent"
         android:visibility="invisible"
         app:srcCompat="@drawable/popcat1" />
+    <ImageView
+        android:id="@+id/omniman3"
+        android:layout_width="@dimen/width_skins_shop"
+        android:layout_height="@dimen/width_skins_shop"
+        app:layout_constraintBottom_toTopOf="@+id/btn_shop_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/omniman" />
 
     <Button
         android:id="@+id/btn_next"
