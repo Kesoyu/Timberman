@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pb = findViewById(R.id.idpbbar);
         gv.setPb(pb);
         gv.initBtn(btn_shop,btn_retry,btn_musicon,btn_musicoff);
-//        if(player==null) {
-//            player = MediaPlayer.create(this, R.raw.dx);
-//            player.setLooping(true);
-//            player.seekTo(0);
-//            player.setVolume(0.5f, 0.5f);
-//
-//        }
+        if(player==null) {
+            player = MediaPlayer.create(this, R.raw.dx);
+            player.setLooping(true);
+            player.seekTo(0);
+            player.setVolume(0.5f, 0.5f);
+
+        }
         player.start();
 
 
