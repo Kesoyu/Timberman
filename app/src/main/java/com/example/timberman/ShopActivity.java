@@ -3,6 +3,7 @@ package com.example.timberman;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,12 +15,18 @@ public class ShopActivity extends AppCompatActivity {
     public ImageButton Avatar1, btn_shop_back;
     public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2,omniman3;
     public Button btn_next,btn_previous;
+    MediaPlayer shopsound;
     public int avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+        shopsound = MediaPlayer.create(this, R.raw.shopsong);
+        shopsound.setLooping(true);
+        shopsound.seekTo(0);
+        shopsound.setVolume(0.4f, 0.4f);
+        shopsound.start();
 
 
        // Avatar1 = findViewById(R.id.Avatar1);
@@ -63,6 +70,7 @@ public class ShopActivity extends AppCompatActivity {
             Constants.Restart=false;
             Intent intent= new Intent(ShopActivity.this,MainActivity.class);
             Constants.Avatar=avatar;
+            shopsound.stop();
             startActivity(intent);
         });
 //        Avatar1.setOnClickListener(v -> {

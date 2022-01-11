@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public ImageView imageView_logo,imageView_game_over;
-    MediaPlayer player,beepsound;
+    MediaPlayer player,beepsound,deadsound,deadplayer;
     public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon,btn_musicoff;
     private GameView gv;
     public TextView txt_best_score;
@@ -72,9 +72,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             player.setVolume(0.2f, 0.2f);
             player.start();
         }
-        else
-            player=null;
-        if(Constants.Avatar==1 || Constants.Avatar==0 || Constants.Avatar==2)
+        else{ player=null;}
+
+        deadplayer= MediaPlayer.create(this, R.raw.deadsong);
+        deadplayer.seekTo(0);
+        deadplayer.setVolume(0.5f, 0.5f);
+
+        deadsound=MediaPlayer.create(this,R.raw.deadsound);
+        deadsound.seekTo(0);
+        deadsound.setVolume(0.5f, 0.5f);
+
+        if(Constants.Avatar==1)
+        {
+            beepsound=MediaPlayer.create(this,R.raw.popcatsound);
+            beepsound.seekTo(300);
+            beepsound.setVolume(0.5f, 0.5f);
+        }
+        if( Constants.Avatar==0 || Constants.Avatar==2)
         {
             beepsound=MediaPlayer.create(this,R.raw.bumpsound);
             beepsound.seekTo(0);
@@ -136,10 +150,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TextView txt_best_score = findViewById(R.id.txt_best_score); txt_best_score.setText(String.valueOf(Constants.bestScore));
             if(Constants.score>Constants.bestScore){ saveData(); }
             if(Constants.IsDead){
+                deadsound.start();
+                deadplayer.start();
                if(Constants.Musick==true) {player.pause();}
+
                 //sprawdzanie umierania
                 gv.pbstart=false;
-
+                btn_musicoff.setVisibility(View.VISIBLE);
+                btn_musicon.setVisibility(View.VISIBLE);
                 btn_retry.setVisibility(View.VISIBLE);
                 btn_shop.setVisibility(View.VISIBLE);
                 pb.setVisibility(INVISIBLE);
@@ -203,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_shop.setOnClickListener(view -> {
             if(Constants.score>Constants.bestScore){ saveData(); }
              Intent intent = new Intent(MainActivity.this,ShopActivity.class);
+            player.stop();
             startActivity(intent);
         });
         btn_retry.setOnClickListener(view -> {
@@ -257,12 +276,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 player.stop();
             }
         });
-
-
-
-
-
-
 
     }
 

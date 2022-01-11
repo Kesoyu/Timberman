@@ -62,11 +62,11 @@ public class GameView extends View {
                 if(pbstart==true)
                 progressCounter-=1;
                 int dodatek=0;
-                dodatek = (int)Constants.score/10;
+                dodatek = (int)Constants.score/40;
                 progressCounter-=dodatek;
                 pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
                 Log.d("pb-status",""+progressCounter);
-                if(progressCounter==0){
+                if(progressCounter==0||progressCounter==-1||progressCounter==-2){
                     Constants.IsDead=true;
                     woodcutter.smierc();
                     start=false;
