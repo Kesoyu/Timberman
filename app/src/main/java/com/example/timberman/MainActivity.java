@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Animacja
         gv.setOnTouchListener((view, motionEvent) -> {
+                beepsound.start();
 
             TextView txt_score = findViewById(R.id.txt_score);
             txt_score.setText(String.valueOf(Constants.score));
@@ -168,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             if (Constants.click == 2 && Constants.clickR!=0) {
-                beepsound.start();
                 switch (Constants.clickR){
                     case 1:
                         ImageView AnimatedTree = findViewById(R.id.animation);
@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Constants.click = 0;
             }
             else if (Constants.click == 1 && Constants.clickL!=0) {
-                beepsound.start();
                 switch (Constants.clickL){
                     case 1:
                         ImageView AnimatedTree4 = findViewById(R.id.animation4);
@@ -224,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_shop.setOnClickListener(view -> {
             if(Constants.score>Constants.bestScore){ saveData(); }
+            Constants.score=0;
              Intent intent = new Intent(MainActivity.this,ShopActivity.class);
          if(Constants.Musick==true){ player.stop();}
             startActivity(intent);

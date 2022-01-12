@@ -178,7 +178,6 @@ public class GameView extends View {
         canvas.drawBitmap(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.podstawadrzewauseless),(478*Constants.SCREEN_WIDTH/1080),(100*Constants.SCREEN_HEIGHT/1920), true),(322*Constants.SCREEN_WIDTH/1080),(1540*Constants.SCREEN_HEIGHT/1920), null);
             woodcutter.draw(canvas);
         if(Constants.IsDead){ //todo tu bedzie else do zrestartowania gry
-            Constants.score=0;
             woodcutter.smierc();
             for(int i = 0;i<arrSicks.size(); i++){
                 arrSicks.get(i).draw(canvas);
