@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             beepsound.seekTo(300);
             beepsound.setVolume(0.5f, 0.5f);
         }
-        if( Constants.Avatar==0 || Constants.Avatar==2) {
+        if( Constants.Avatar==0 || Constants.Avatar==2 ||Constants.Avatar==3)  {
             beepsound=MediaPlayer.create(this,R.raw.bumpsound);
             beepsound.seekTo(0);
             beepsound.setVolume(0.5f, 0.5f);

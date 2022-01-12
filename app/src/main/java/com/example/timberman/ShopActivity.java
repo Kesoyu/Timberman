@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 public class ShopActivity extends AppCompatActivity {
     public ImageButton Avatar1, btn_shop_back,btn_next,btn_previous;
-    public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2,omniman3;
+    public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2,omniman3,amongus4;
 
     MediaPlayer shopsound;
     public int avatar;
@@ -40,6 +40,7 @@ public class ShopActivity extends AppCompatActivity {
         woodercutter1=findViewById(R.id.woodercutter1);
         popcat2=findViewById(R.id.popcat2);
         omniman3=findViewById(R.id.omniman3);
+        amongus4=findViewById(R.id.amognus4);
         avatar=Constants.Avatar;
         WhoChose(avatar);
 
@@ -48,7 +49,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 avatar++;
-                if(avatar>2)
+                if(avatar>3)
                     avatar=0;
                 WhoChose(avatar);
             }
@@ -59,7 +60,7 @@ public class ShopActivity extends AppCompatActivity {
             public void onClick(View view) {
                 avatar--;
                 if(avatar==-1)
-                    avatar=2;
+                    avatar=3;
                 WhoChose(avatar);
             }
         });
@@ -86,18 +87,26 @@ public class ShopActivity extends AppCompatActivity {
             omniman3.setVisibility(View.INVISIBLE);
             woodercutter1.setVisibility(View.VISIBLE);
             popcat2.setVisibility(View.INVISIBLE);
-
+            amongus4.setVisibility(View.INVISIBLE);
         }
 
         else if (avatar==1) {
             woodercutter1.setVisibility(View.INVISIBLE);
             popcat2.setVisibility(View.VISIBLE);
             omniman3.setVisibility(View.INVISIBLE);
+            amongus4.setVisibility(View.INVISIBLE);
         }
         else if (avatar==2) {
            popcat2.setVisibility(View.INVISIBLE);
            woodercutter1.setVisibility(View.INVISIBLE);
           omniman3.setVisibility(View.VISIBLE);
+            amongus4.setVisibility(View.INVISIBLE);
+        }
+        else if (avatar==3) {
+            amongus4.setVisibility(View.VISIBLE);
+            popcat2.setVisibility(View.INVISIBLE);
+            woodercutter1.setVisibility(View.INVISIBLE);
+            omniman3.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -156,6 +156,14 @@ public class GameView extends View {
             arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.omnimanright1));
             arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.omnimanright2));
         }
+        else if(Constants.Avatar==3){
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.amongus1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.amongus1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.amongus2));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.amongusright1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.amongusright1));
+            arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.amongusright2));
+        }
 
         arrBms.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.nagrobek));
         woodcutter.setArrBms(arrBms);
