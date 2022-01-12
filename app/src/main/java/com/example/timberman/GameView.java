@@ -69,10 +69,9 @@ public class GameView extends View {
                 pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
                 Log.d("pb-status",""+progressCounter);
                 if(progressCounter==0||progressCounter==-1||progressCounter==-2){
-                    if(Constants.IsDead=false) {
+                    if(Constants.IsDead==false) {
                         playDeadSound();
                     }
-                    Constants.IsDead=true;
                     woodcutter.smierc();
                     start=false;
                     btn_shop.setVisibility(View.VISIBLE);

@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else{ player=null;}
 
-        deadplayer= MediaPlayer.create(this, R.raw.deadsong);
-        deadplayer.seekTo(0);
-        deadplayer.setVolume(0.5f, 0.5f);
+//        deadplayer= MediaPlayer.create(this, R.raw.deadsong);
+//        deadplayer.seekTo(0);
+//        deadplayer.setVolume(0.5f, 0.5f);
 
         deadsound=MediaPlayer.create(this,R.raw.deadsound);
         deadsound.seekTo(0);
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(Constants.score>Constants.bestScore){ saveData(); }
             if(Constants.IsDead){
                 deadsound.start();
-                deadplayer.start();
+//                deadplayer.start();
                if(Constants.Musick==true) {player.pause();}
 
                 //sprawdzanie umierania
