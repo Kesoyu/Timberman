@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 btn_musicon.setVisibility(View.VISIBLE);
                 btn_retry.setVisibility(View.VISIBLE);
                 btn_shop.setVisibility(View.VISIBLE);
+
                 pb.setVisibility(INVISIBLE);
             }
 
