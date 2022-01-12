@@ -31,6 +31,8 @@ public class GameView extends View {
     public ProgressBar pb;
     public int progressCounter = 100;
     public MotionEvent skrt;
+    MediaPlayer deadsound;
+
 
     public ImageButton btn_shop,btn_retry,btn_musicon,btn_musicoff;
     public void initBtn(ImageButton shop, ImageButton retry, ImageButton musicicon,ImageButton musicoff){
@@ -67,6 +69,9 @@ public class GameView extends View {
                 pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
                 Log.d("pb-status",""+progressCounter);
                 if(progressCounter==0||progressCounter==-1||progressCounter==-2){
+                    if(Constants.IsDead=false) {
+                        playDeadSound();
+                    }
                     Constants.IsDead=true;
                     woodcutter.smierc();
                     start=false;
@@ -301,7 +306,12 @@ public class GameView extends View {
         }
         return true;
     }
-
+    public void setMediapleyer(MediaPlayer mainDeadsound){
+        deadsound=mainDeadsound;
+    }
+    public void playDeadSound(){
+        deadsound.start();
+    }
     public void setStart(boolean start) {
         this.start = start;
     }

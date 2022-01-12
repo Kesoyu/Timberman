@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         deadsound=MediaPlayer.create(this,R.raw.deadsound);
         deadsound.seekTo(0);
         deadsound.setVolume(0.5f, 0.5f);
-
+        gv.setMediapleyer(deadsound);
         if(Constants.Avatar==1) {
             beepsound=MediaPlayer.create(this,R.raw.popcatsound);
             beepsound.seekTo(300);
