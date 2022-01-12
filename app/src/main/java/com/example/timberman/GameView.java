@@ -98,7 +98,7 @@ public class GameView extends View {
 
             if (los == 0){
                 if (!changeSide) {
-                    this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (843*Constants.SCREEN_HEIGHT/1920), (240*Constants.SCREEN_HEIGHT/1920)));
+                    this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920), ((395+395)*Constants.SCREEN_WIDTH/1080), (240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                     arrSicks.get(i).setStrona(Stick.Strona.LEWO);
                 }
@@ -111,7 +111,7 @@ public class GameView extends View {
             }
             else{
                 if (changeSide) {
-                    this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(843*Constants.SCREEN_HEIGHT/1920),(240*Constants.SCREEN_HEIGHT/1920)));
+                    this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),((395+395)*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                     arrSicks.get(i).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                     arrSicks.get(i).setStrona(Stick.Strona.PRAWO);
                 }
@@ -207,7 +207,7 @@ public class GameView extends View {
 
         if (los == 0) {
             if (!changeSide) {
-                this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920), (843*Constants.SCREEN_HEIGHT/1920), (240*Constants.SCREEN_HEIGHT/1920)));
+                this.arrSicks.add(new Stick((-36*Constants.SCREEN_WIDTH/1080), arrSicks.get(arrSicks.size()-1).getY() - (240*Constants.SCREEN_HEIGHT/1920), ((395+395)*Constants.SCREEN_WIDTH/1080), (240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.lewo));
                 arrSicks.get(arrSicks.size()-1).setStrona(Stick.Strona.LEWO);
             }
@@ -220,7 +220,7 @@ public class GameView extends View {
         }
         else {
             if (changeSide) {
-                this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),(843*Constants.SCREEN_HEIGHT/1920),(240*Constants.SCREEN_HEIGHT/1920)));
+                this.arrSicks.add(new Stick((357*Constants.SCREEN_WIDTH/1080),arrSicks.get(arrSicks.size() - 1).getY() - (240*Constants.SCREEN_HEIGHT/1920),((395+395)*Constants.SCREEN_WIDTH/1080),(240*Constants.SCREEN_HEIGHT/1920)));
                 arrSicks.get(arrSicks.size()-1).setBm(BitmapFactory.decodeResource(this.getResources(), R.drawable.prawo));
                 arrSicks.get(arrSicks.size()-1).setStrona(Stick.Strona.PRAWO);
             }
