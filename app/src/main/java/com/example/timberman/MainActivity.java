@@ -82,14 +82,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         deadsound.seekTo(0);
         deadsound.setVolume(0.5f, 0.5f);
 
-        if(Constants.Avatar==1)
-        {
+        if(Constants.Avatar==1) {
             beepsound=MediaPlayer.create(this,R.raw.popcatsound);
             beepsound.seekTo(300);
             beepsound.setVolume(0.5f, 0.5f);
         }
-        if( Constants.Avatar==0 || Constants.Avatar==2)
-        {
+        if( Constants.Avatar==0 || Constants.Avatar==2) {
             beepsound=MediaPlayer.create(this,R.raw.bumpsound);
             beepsound.seekTo(0);
             beepsound.setVolume(0.5f, 0.5f);
@@ -221,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_shop.setOnClickListener(view -> {
             if(Constants.score>Constants.bestScore){ saveData(); }
              Intent intent = new Intent(MainActivity.this,ShopActivity.class);
-            player.stop();
+         if(Constants.Musick==true){ player.stop();}
             startActivity(intent);
         });
         btn_retry.setOnClickListener(view -> {
@@ -298,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     //muzyka
     public void onClick(View view) {
-        if(view.getId()==R.id.stop){
+        if(Constants.Musick==true){
             if(player.isPlaying()){
                 player.pause();
             }

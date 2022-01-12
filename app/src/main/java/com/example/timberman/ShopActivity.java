@@ -12,9 +12,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class ShopActivity extends AppCompatActivity {
-    public ImageButton Avatar1, btn_shop_back;
+    public ImageButton Avatar1, btn_shop_back,btn_next,btn_previous;
     public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2,omniman3;
-    public Button btn_next,btn_previous;
+
     MediaPlayer shopsound;
     public int avatar;
 
@@ -92,7 +92,6 @@ public class ShopActivity extends AppCompatActivity {
         else if (avatar==1) {
             woodercutter1.setVisibility(View.INVISIBLE);
             popcat2.setVisibility(View.VISIBLE);
-
             omniman3.setVisibility(View.INVISIBLE);
         }
         else if (avatar==2) {
