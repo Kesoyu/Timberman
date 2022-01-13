@@ -13,4 +13,5 @@ public class Constants {
     public static boolean IsDead=false;
     public static boolean Restart=false;
     public static boolean Musick=true;
+    public static boolean StopMusick=false;
 }

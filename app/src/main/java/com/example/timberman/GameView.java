@@ -31,15 +31,15 @@ public class GameView extends View {
     public ProgressBar pb;
     public int progressCounter = 100;
     public MotionEvent skrt;
-    MediaPlayer deadsound;
+    MediaPlayer deadsound,gamemusick;
 
 
-    public ImageButton btn_shop,btn_retry,btn_musicon,btn_musicoff;
-    public void initBtn(ImageButton shop, ImageButton retry, ImageButton musicicon,ImageButton musicoff){
+    public ImageButton btn_shop,btn_retry,btn_musicon;
+    public void initBtn(ImageButton shop, ImageButton retry, ImageButton musicicon){
         this.btn_shop = shop;
         this.btn_retry = retry;
         this.btn_musicon = musicicon;
-        this.btn_musicoff = musicoff;
+
     }
     public void setPb(ProgressBar pb) {
         this.pb = pb;
@@ -70,14 +70,18 @@ public class GameView extends View {
                 Log.d("pb-status",""+progressCounter);
                 if(progressCounter==0||progressCounter==-1||progressCounter==-2){
                     if(Constants.IsDead==false) {
+                        Constants.StopMusick=true;
+                        stopMusick();
                         playDeadSound();
+
+
                     }
                     woodcutter.smierc();
                     start=false;
                     btn_shop.setVisibility(View.VISIBLE);
                     btn_retry.setVisibility(View.VISIBLE);
                     btn_musicon.setVisibility(View.VISIBLE);
-                    btn_musicoff.setVisibility(View.VISIBLE);
+
                 }
             }
         };
@@ -311,6 +315,13 @@ public class GameView extends View {
     public void playDeadSound(){
         deadsound.start();
     }
+
+    public void setPleyer(MediaPlayer mainDeadsound){ gamemusick=mainDeadsound; }
+    public void playMusick(){
+        gamemusick.start();
+    }
+    public void stopMusick(){ gamemusick.stop(); }
+
     public void setStart(boolean start) {
         this.start = start;
     }

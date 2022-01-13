@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public ImageView imageView_logo,imageView_game_over;
     MediaPlayer player,beepsound,deadsound,deadplayer;
-    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon,btn_musicoff;
+    public ImageButton btn_start,btn_shop,btn_info,btn_pause,btn_select,btn_retry,btn_musicon;
     private GameView gv;
     public TextView txt_best_score;
     public TextView txt_score;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
-        btn_musicoff=findViewById(R.id.btn_musicoff);
+
         btn_musicon=findViewById(R.id.btn_musicon);
         imageView_logo=findViewById(R.id.imageView_logo);
         btn_pause=findViewById(R.id.btn_pause);
@@ -63,15 +63,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gv=findViewById(R.id.gv);
         pb = findViewById(R.id.idpbbar);
         gv.setPb(pb);
-        gv.initBtn(btn_shop,btn_retry,btn_musicon,btn_musicoff);
+        gv.initBtn(btn_shop,btn_retry,btn_musicon);
         //muzyka w tle i drzdewo smierc
         if(Constants.Musick==true) {
             player = MediaPlayer.create(this, R.raw.song2);
             player.setLooping(true);
             player.seekTo(0);
             player.setVolume(0.2f, 0.2f);
-            player.start();
+            gv.setPleyer(player);
+            gv.playMusick();
         }
+
         else{ player=null;}
 
 //        deadplayer= MediaPlayer.create(this, R.raw.deadsong);
@@ -87,13 +89,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             beepsound.seekTo(300);
             beepsound.setVolume(0.5f, 0.5f);
         }
-        if( Constants.Avatar==0 ||Constants.Avatar==3)  {
+        if( Constants.Avatar==0 )  {
             beepsound=MediaPlayer.create(this,R.raw.bumpsound);
             beepsound.seekTo(0);
             beepsound.setVolume(0.5f, 0.5f);
         }
         if( Constants.Avatar==2 ){
             beepsound=MediaPlayer.create(this,R.raw.omnimansound);
+            beepsound.seekTo(0);
+            beepsound.setVolume(0.5f, 0.5f);
+        }
+        if( Constants.Avatar==3 ){
+            beepsound=MediaPlayer.create(this,R.raw.umongussound);
             beepsound.seekTo(0);
             beepsound.setVolume(0.5f, 0.5f);
         }
@@ -145,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imageView_logo.setVisibility(INVISIBLE);
         }
 
+
         // Animacja
         gv.setOnTouchListener((view, motionEvent) -> {
                 beepsound.start();
@@ -160,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //sprawdzanie umierania
                 gv.pbstart=false;
-                btn_musicoff.setVisibility(View.VISIBLE);
+
                 btn_musicon.setVisibility(View.VISIBLE);
                 btn_retry.setVisibility(View.VISIBLE);
                 btn_shop.setVisibility(View.VISIBLE);
@@ -221,11 +229,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
         });
 
+
         btn_shop.setOnClickListener(view -> {
             if(Constants.score>Constants.bestScore){ saveData(); }
             Constants.score=0;
              Intent intent = new Intent(MainActivity.this,ShopActivity.class);
-         if(Constants.Musick==true){ player.stop();}
+         if(Constants.Musick==true){ gv.stopMusick();}
             startActivity(intent);
         });
         btn_retry.setOnClickListener(view -> {
@@ -245,14 +254,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     btn_shop.setVisibility(View.VISIBLE);
                     btn_retry.setVisibility(View.VISIBLE);
                     btn_musicon.setVisibility(View.VISIBLE);
-                    btn_musicoff.setVisibility(View.VISIBLE);
+
                 }
                 else {
                     gv.setStart(true);
                     btn_shop.setVisibility(INVISIBLE);
                     btn_retry.setVisibility(INVISIBLE);
                     btn_musicon.setVisibility(INVISIBLE);
-                    btn_musicoff.setVisibility(INVISIBLE);
+
                 }
             }
         });
@@ -265,21 +274,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_musicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                player = MediaPlayer.create(MainActivity.this, R.raw.song2);
-                player.setVolume(0.2f, 0.2f);
-                player.seekTo(0);
-                player.start();
-                Constants.Musick=true;
+                if(Constants.Musick==true)
+                {
+                   gv.stopMusick();
+                    Constants.Musick=false;
+                }
+                else if (Constants.Musick==false) {
+                    player = MediaPlayer.create(MainActivity.this, R.raw.song2);
+                    player.setVolume(0.2f, 0.2f);
+                    player.seekTo(0);
+                    gv.setPleyer(player);
+                    gv.playMusick();
+                    Constants.Musick = true;
+                }
 
             }
         });
-        btn_musicoff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                 Constants.Musick=false;
-                player.stop();
-            }
-        });
+
+
 
     }
 
@@ -307,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 player.pause();
             }
             else{
-                player.start();
+               gv.playMusick();
             }
         }
     }

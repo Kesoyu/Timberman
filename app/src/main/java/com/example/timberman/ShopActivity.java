@@ -14,6 +14,7 @@ import android.widget.ImageView;
 public class ShopActivity extends AppCompatActivity {
     public ImageButton Avatar1, btn_shop_back,btn_next,btn_previous;
     public ImageView Avatar2,Avatar3,Avatar4,woodercutter1,popcat2,omniman3,amongus4;
+    MediaPlayer beepsound;
 
     MediaPlayer shopsound;
     public int avatar;
@@ -43,6 +44,7 @@ public class ShopActivity extends AppCompatActivity {
         amongus4=findViewById(R.id.amognus4);
         avatar=Constants.Avatar;
         WhoChose(avatar);
+         beepsound.start();
 
 
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,7 @@ public class ShopActivity extends AppCompatActivity {
                 if(avatar>3)
                     avatar=0;
                 WhoChose(avatar);
+                beepsound.start();
             }
         });
 
@@ -62,6 +65,7 @@ public class ShopActivity extends AppCompatActivity {
                 if(avatar==-1)
                     avatar=3;
                 WhoChose(avatar);
+                beepsound.start();
             }
         });
 
@@ -83,11 +87,14 @@ public class ShopActivity extends AppCompatActivity {
     }
     void WhoChose(int avatar)
     {
+        if(beepsound!=null){ beepsound.stop();}
         if(avatar==0) {
             omniman3.setVisibility(View.INVISIBLE);
             woodercutter1.setVisibility(View.VISIBLE);
             popcat2.setVisibility(View.INVISIBLE);
             amongus4.setVisibility(View.INVISIBLE);
+            beepsound=MediaPlayer.create(this,R.raw.bumpsound);
+            beepsound.setVolume(0.8f, 0.8f);
         }
 
         else if (avatar==1) {
@@ -95,18 +102,29 @@ public class ShopActivity extends AppCompatActivity {
             popcat2.setVisibility(View.VISIBLE);
             omniman3.setVisibility(View.INVISIBLE);
             amongus4.setVisibility(View.INVISIBLE);
+            beepsound=MediaPlayer.create(this,R.raw.popcatsound);
+
+            beepsound.setVolume(0.5f, 0.5f);
+
+            beepsound.start();
         }
         else if (avatar==2) {
-           popcat2.setVisibility(View.INVISIBLE);
-           woodercutter1.setVisibility(View.INVISIBLE);
-          omniman3.setVisibility(View.VISIBLE);
+              popcat2.setVisibility(View.INVISIBLE);
+              omniman3.setVisibility(View.VISIBLE);
             amongus4.setVisibility(View.INVISIBLE);
+            woodercutter1.setVisibility(View.INVISIBLE);
+            beepsound=MediaPlayer.create(this,R.raw.omnimansound);
+            beepsound.setVolume(0.5f, 0.5f);
+
         }
         else if (avatar==3) {
             amongus4.setVisibility(View.VISIBLE);
             popcat2.setVisibility(View.INVISIBLE);
             woodercutter1.setVisibility(View.INVISIBLE);
             omniman3.setVisibility(View.INVISIBLE);
+            beepsound=MediaPlayer.create(this,R.raw.umongussound);
+
+            beepsound.setVolume(0.5f, 0.5f);
         }
     }
 }
