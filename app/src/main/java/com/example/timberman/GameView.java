@@ -29,7 +29,7 @@ public class GameView extends View {
     private final float leftPersentage;
     private boolean changeSide=false;
     public ProgressBar pb;
-    public int progressCounter = 100;
+    public int progressCounter = 100,licznikPbScal=0,secondLicznikPbScal=0;
     public MotionEvent skrt;
     MediaPlayer deadsound,gamemusick;
 
@@ -61,27 +61,37 @@ public class GameView extends View {
         runnable = () -> {
             invalidate();
             if(pb!=null){
-                if(pbstart==true)
-                progressCounter-=1;
-                int dodatek=0;
-                dodatek = (int)Constants.score/40;
-                progressCounter-=dodatek;
-                pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
-                Log.d("pb-status",""+progressCounter);
-                if(progressCounter==0||progressCounter==-1||progressCounter==-2){
-                    if(Constants.IsDead==false) {
-                        Constants.StopMusick=true;
-                        stopMusick();
-                        playDeadSound();
-
-
+                if(pbstart==true){
+                    if(licznikPbScal==3) {
+                        if(secondLicznikPbScal==8){
+                            int dodatek=0;
+                            dodatek = (int)Constants.score/40;
+                            progressCounter-=dodatek;
+                            secondLicznikPbScal=0;
+                        }
+                        secondLicznikPbScal++;
+                        progressCounter -= 3;
+                        licznikPbScal = 0;
                     }
-                    woodcutter.smierc();
-                    start=false;
-                    btn_shop.setVisibility(View.VISIBLE);
-                    btn_retry.setVisibility(View.VISIBLE);
-                    btn_musicon.setVisibility(View.VISIBLE);
+                    else {
+                        licznikPbScal++;
+                    }
+                    pb.setProgress(progressCounter);//TODO Tutuaj co sie pierdoli z wskaznikeim finda od progressbara jutro to naprawie/dzis
+                    Log.d("pb-status",""+progressCounter);
+                    if(progressCounter==0||progressCounter==-1||progressCounter==-2){
+                        if(Constants.IsDead==false) {
+                            Constants.StopMusick=true;
+                            stopMusick();
+                            playDeadSound();
 
+
+                        }
+                        woodcutter.smierc();
+                        start=false;
+                        btn_shop.setVisibility(View.VISIBLE);
+                        btn_retry.setVisibility(View.VISIBLE);
+                        btn_musicon.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         };
@@ -243,11 +253,13 @@ public class GameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             if (start) {
-                if(progressCounter<90){
-                    progressCounter=progressCounter+10;
-                }
-                else{
-                    progressCounter=100;
+                if(pbstart=true){
+                    if(progressCounter<90){
+                        progressCounter=progressCounter+10;
+                    }
+                    else{
+                        progressCounter=100;
+                    }
                 }
                 float xValue = event.getX();
 

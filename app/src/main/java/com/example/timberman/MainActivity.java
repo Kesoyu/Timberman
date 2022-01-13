@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         });
         btn_retry.setOnClickListener(view -> {
-
+            gv.pbstart=true;
             Constants.Restart=true;
             if(Constants.score>Constants.bestScore){ saveData(); }
             Constants.score=0;
@@ -248,6 +248,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         btn_info.setOnClickListener(view -> Toast.makeText(MainActivity.this, R.string.info_string, Toast.LENGTH_LONG).show());
         btn_pause.setOnClickListener(view -> {
+            if(gv.pbstart==true){
+                gv.pbstart=false;
+            }
+            else{
+                gv.pbstart=true;
+            }
+
             if(!Constants.IsDead){
                 if(gv.getStart()) {
                     gv.setStart(false);
